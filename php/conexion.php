@@ -13,12 +13,12 @@
 
 		return $conexion;
 	}
-	/* //Prueba para mirar que la base de datos conecte
+	//Prueba para mirar que la base de datos conecte
 	
 	if (conexion()) {
 		echo "conectado";
 	}else{
 		echo "no conectado";
 	}
-	*/
+	
 ?>

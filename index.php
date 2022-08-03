@@ -1,160 +1,100 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 	<meta charset="UTF-8">
-	<title>Usuarios</title>
-	
-	<!--Libreria de Bootstrap
+
+	<title>Login</title>
+	<!--Libreria de Bootstrap´
+
 	<link rel="stylesheet" href="librerias/bootstrap/css/bootstrap.css">-->
+
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+	<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+	<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+
+	<link rel="stylesheet" href="css/site.css">
+	<link rel="stylesheet" href="css/toggle-bootstrap.css">
+	<link rel="stylesheet" href="css/toggle-bootstrap-dark.css">
+	<link rel="stylesheet" href="css/toggle-bootstrap-print.css">
 
 	<!--Libreria de Alertify-->
 	<link rel="stylesheet" href="librerias/alertifyjs/css/alertify.css">
 	<link rel="stylesheet" href="librerias/alertifyjs/css/themes/default.css">
-	
+	<link rel="stylesheet" href="librerias\alertifyjs\css\sidebar.css">
+	<link rel="stylesheet" href="css/bootstrap-dark.css">
+	<link rel="stylesheet" href="css/bootstrap-prefers-light.css">
+
 	<!--Libreria de js-->
 	<script src="librerias/jquery-3.3.1.min.js"></script>
 	<script src="js/funciones.js"></script>
-	<!--<script src="librerias/bootstrap/js/bootstrap.js"></script>-->|
+	<script src="js\sidebar.js"> </script>
+
+	<link rel="stylesheet" href="bd\css\bootstrap-dark-prefers-light.css">
+	<link rel=" stylesheet" href="bd\css\bootstrap-dark-prefers-light.min.css">
+	<link rel=" stylesheet" href="bd\css\bootstrap-dark.css">
+	<link rel=" stylesheet" href="bd\css\bootstrap-dark.min.css">
+
+	<link rel=" stylesheet" href="bd\css\bootstrap-light.css">
+	<link rel="stylesheet" href="bd\css\bootstrap-light.min.css">
+	<link rel="stylesheet" href="bd\css\bootstrap-prefers-dark-color-only.css">
+	<link rel="stylesheet" href="bd\css\bootstrap-prefers-dark.css">
+	<link rel="stylesheet" href="bd\css\bootstrap-prefers-dark.min.css">
+	<link rel="stylesheet" href="bd\css\form-elements.css">
+	<link rel="stylesheet" href="bd\css\style.cc">
+	<link rel="stylesheet" href="bd\css\toggle-bootstrap-dark.css">
+	<link rel="stylesheet" href="bd\css\toggle-bootstrap-dark.min.css">
+	<link rel="stylesheet" href="bd\css\toggle-bootstrap-print.css">
+	<link rel="stylesheet" href="bd\css\toggle-bootstrap-print.min.css">
+	<link rel="stylesheet" href="bd\css\toggle-bootstrap.css">
+	<link rel="stylesheet" href="bd\css\toggle-bootstrap.min.css">
+
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 	<script src="librerias/alertifyjs/alertify.js"></script>
-	
-	
-	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
-        <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
-        <link rel="stylesheet" href="assets/font-awesome/css/font-awesome.min.css">
-		<link rel="stylesheet" href="assets/css/form-elements.css">
-        <link rel="stylesheet" href="assets/css/style.css">
-        <link rel="shortcut icon" href="assets/ico/favicon.png">
-        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="assets/ico/apple-touch-icon-144-precomposed.png">
-        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="assets/ico/apple-touch-icon-114-precomposed.png">
-        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="assets/ico/apple-touch-icon-72-precomposed.png">
-        <link rel="apple-touch-icon-precomposed" href="assets/ico/apple-touch-icon-57-precomposed.png">
 
 </head>
+
 <body>
 
-	<div class="container">
-		<ul class="nav nav-tabs">
-			<li role="presentation"><a href="/index.php">Home</a></li>
-		  <li role="presentation"><a href="/Consultas.php">Consultas</a></li>
-		  <li role="presentation"><a href="#">Nombres Más comunes</a></li>
-		  <li role="presentation"><a href="#">Nombres Menos comunes</a></li>
-		  <li role="presentation"><a href="#">Cantidad de Electores</a></li>
-		  <li role="presentation"><a href="#">Sumario de personas</a></li>
-		  <li role="presentation"><a href="#">Reporte Consolidados</a></li>
-		  <li role="presentation"><a href="#">Bitácora de Consultas</a></li>
-		
-		</ul>
+	<div class="container" style="margin:auto; width: 2000px; height: 1200px;display: flex; flex-wrap: wrap; align-content: center; padding: 324px; ;">
+		<!-- border: 1px solid #c3c3c3; -->
+
+		<div class="card text-white bg-secondary mb-2 d-inline-block" style=" max-width: 2000px; padding-left:20%; padding-right:20%;  ">
+			<div class="card-header" style="padding-left:20%; padding-right:20%">
+				<h3>Login</h3>
+			</div>
+			<div class="card-body">
+				<h4 class="card-title">Enter username and password to log on:</h4>
+				<p class="card-text">
+
+				<div class="form-bottom" style="text-align:right;">
+					<form role="form" action="Home.php" method="post" class="login-form">
+						<div class="form-group">
+							<label class="sr-only" for="form-username">Username</label>
+							<input type="text" name="userId" placeholder="Username..." class="form-username form-control" id="form-username">
+						</div>
+						<div class="form-group">
+							<label class="sr-only" for="form-password">Password</label>
+							<input type="password" name="userPass" placeholder="Password..." class="form-password form-control" id="form-password">
+						</div>
+						<button type="submit" class="btn" name="login">Sign in!</button>
+					</form>
+				</div>
+
+				</p>
+			</div>
+		</div>
 	</div>
-
- <!--	<div class="container">-->
-		<!--	<div id="tabla"></div> <!--lo llamamos abajo con el jquery-->
-	<!--	</div>-->
-
-	 <!-- Top content -->
-	 <div class="top-content">
-        	
-            <div class="inner-bg">
-                <div class="container">
-                	
-                    <div class="row">
-                        <div class="col-sm-8 col-sm-offset-2 text">
-                       
-                            <div class="description">
-                            	<p>
-	                            	
-                            	</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="row">
-                        <div class="col-sm-5">
-                        	
-                        	<div class="form-box">
-	                        	<div class="form-top">
-	                        		<div class="form-top-left">
-	                        			<h3>Login</h3>
-	                            		<p>Enter username and password to log on:</p>
-	                        		</div>
-	                        		<div class="form-top-right">
-	                        			<i class="fa fa-key"></i>
-	                        		</div>
-	                            </div>
-	                            <div class="form-bottom">
-				                    <form role="form" action="control.php" method="post" class="login-form">
-				                    	<div class="form-group">
-				                    		<label class="sr-only" for="form-username">Username</label>
-				                        	<input type="text" name="userId" placeholder="Username..." class="form-username form-control" id="form-username">
-				                        </div>
-				                        <div class="form-group">
-				                        	<label class="sr-only" for="form-password">Password</label>
-				                        	<input type="password" name="userPass" placeholder="Password..." class="form-password form-control" id="form-password">
-				                        </div>
-				                        <button type="submit" class="btn" name="login">Sign in!</button>
-				                    </form>
-			                    </div>
-		                    </div>
-		                
-	                        
-                        </div>
-                        
-                        <div class="col-sm-1 middle-border"></div>
-                        <div class="col-sm-1"></div>
-                    
-                    </div>
-                    
-                </div>
-            </div>
-            
-        </div>
-
-
-        <!-- Javascript -->
-        <script src="assets/js/jquery-1.11.1.min.js"></script>
-        <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-        <script src="assets/js/scripts.js"></script>
-        
-        <!--[if lt IE 10]>
-            <script src="assets/js/placeholder.js"></script>
-        <![endif]-->
-
 
 
 </body>
+
 </html>
-
-<!--Estructura basica de Jquery-->
-
-<script type="text/javascript">
-	$(document).ready(function(){
-		//Llamando la tabla
-		$('#tabla').load('componentes/tabla.php');
-	});
-</script>
-
-<script type="text/javascript">
-	$(document).ready(function(){
-
-		$('#guardarNuevo').click(function(){
-
-			nombre=$('#nombre').val();
-			apellido=$('#apellido').val();
-			email=$('#email').val();
-			telefono=$('#telefono').val();
-
-			agregardatos(nombre,apellido,email,telefono)
-		});
-
-
-		$('#actualizarDatos').click(function(){
-
-			actualizaDatos();
-
-		});
-	});
-</script>
