@@ -99,7 +99,7 @@
       <ul class="navbar-nav mr-auto mt-2 mt-md-0">
    
         <li class="nav-item">
-          <a style="font-size:20px ;font-family: Arial, Helvetica, sans-serif;">Home</a>
+          <a style="font-size:20px ;font-family: Arial, Helvetica, sans-serif;">Bitácora</a>
           
         </li>
       </ul>
