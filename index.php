@@ -67,18 +67,69 @@
 	<?php
 
 
+	session_start();
+
+	$error = '';
+
+	if (isset($_POST['login'])) {
+
+		if (empty($_POST['username']) || empty($_POST['userPass'])) {
 
 
-	if (isset($_HOST['username'])) {
+			$error = "Username or Password not valid";
+		} else {
 
 
-		$conn = new mysqli($serverName, $serverUser, $dbPassword, $dbName);
+			/*mysqli_real_escape_string($conn,
+			$dbPassword = mysqli_real_escape_string($conn, $_POST['userPass']);
+			*/
+			$serverUser =  $_POST['username'];
+			$dbPassword = $_POST['userPass'];
+			$serverName = "192.168.100.67";
+			$dbName = "Deiby";
 
-		$serverName = "192.168.100.67";
-		$serverUser = $_POST['username'];
-		$dbPassword = $_POST['userPass'];
+			$conn = new mysqli($serverName, $serverUser, $dbPassword, $dbName);
 
-		$dbName = "Deiby";
+			$query = "SELECT username, userPass from administradores where username=? AND contrasena=? LIMIT 1";
+
+			$stmt = $conn->prepare($query);
+			$stmt->bind_param("ss", $serverUser, $dbPassword);
+			$stmt->execute();
+			$stmt->bind_result($serverUser, $dbPassword);
+			$stmt->store_result();
+
+			if ($stmt->fetch()) {
+
+				$_SESSION['username'] = $serverUser;
+				header("location:home.php");
+			} else {
+
+				$error = "Username or Password invalid";
+			}
+
+			mysqli_close($conn);
+		}
+	}
+
+
+	/*	if (isset($_HOST['username'])) {
+
+		if (isset($_POST['login'])) {
+
+			if ($serverUser != "" && $dbPassword != "") {
+
+				$sql = "Select c1  from administradores WHERE username = '$serverUser' and 	contrasena = 'dbPassword' ";
+				$result = mysqli_query($conn, $sql);
+				$row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+
+				$count = mysqli_num_rows($result);
+
+				if ($count == 1) {
+
+					header("location:home.php");
+				}
+			}
+		}
 
 		if (conexion()) {
 			echo "conectado";
@@ -87,7 +138,9 @@
 		}
 	}
 
+	//include 'DBConnection.php';
 
+*/
 	?>
 
 
@@ -103,7 +156,8 @@
 				<p class="card-text">
 
 				<div class="form-bottom" style="text-align:right;">
-					<form role="form" action="Home.php" method="POST" class="login-form">
+					<!-- action="Home.php" -->
+					<form role="form" method="POST" class="login-form">
 						<div class="form-group">
 							<label class="sr-only" for="form-username">Username</label>
 							<input type="text" name="username" placeholder="Username" class="form-username form-control" id="form-username">

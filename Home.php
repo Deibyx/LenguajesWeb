@@ -1,3 +1,13 @@
+<?php
+
+include('session.php');
+if (!isset($_SESSION['login_user'])) {
+  header("location: index.php");
+}
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -47,7 +57,7 @@
   <link rel="stylesheet" href="bd\css\bootstrap-prefers-dark-color-only.css">
   <link rel="stylesheet" href="bd\css\bootstrap-prefers-dark.css">
   <link rel="stylesheet" href="bd\css\bootstrap-prefers-dark.min.css">
-  
+
   <link rel="stylesheet" href="bd\css\form-elements.css">
   <link rel="stylesheet" href="bd\css\style.cc">
   <link rel="stylesheet" href="bd\css\toggle-bootstrap-dark.css">
@@ -87,20 +97,20 @@
 
     <div class="collapse navbar-collapse" id="navbarTogglerDemo03" style="position: absolute; right: 10px; width: 4%; padding: 1px; align-items: center;">
       <ul class="navbar-nav mr-auto mt-2 mt-md-0">
-   
+
         <li class="nav-item">
           <a class="nav-link" href="index.php" style="font-size:20px ;font-family: Arial, Helvetica, sans-serif;">Logout</a>
-          
+
         </li>
       </ul>
     </div>
 
-    <div class="collapse navbar-collapse" id="navbarTogglerDemo03" >
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
       <ul class="navbar-nav mr-auto mt-2 mt-md-0">
-   
+
         <li class="nav-item">
           <a style="font-size:20px ;font-family: Arial, Helvetica, sans-serif;">Home</a>
-          
+
         </li>
       </ul>
     </div>
@@ -262,7 +272,7 @@
 
 </body>
 
-  <!-- App JS 
+<!-- App JS 
   <script src="js/app.js"></script>
 
   Estructura basica de Jquery
