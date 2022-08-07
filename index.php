@@ -64,26 +64,31 @@
 
 <body>
 
-<?php
+	<?php
 
-//include 'DBConnection.php';
 
-if( isset($_HOST['username'])){
 
-	$username = $_POST['username'];
-	$password = $_POST['userPass'];
-	$modal = $_modal['myModal'];
 
-	if(empty($username) || empty($userPass)){
+	if (isset($_HOST['username'])) {
 
-		echo $modal;
-	}else{
 
+		$conn = new mysqli($serverName, $serverUser, $dbPassword, $dbName);
+
+		$serverName = "192.168.100.67";
+		$serverUser = $_POST['username'];
+		$dbPassword = $_POST['userPass'];
+
+		$dbName = "Deiby";
+
+		if (conexion()) {
+			echo "conectado";
+		} else {
+			echo "no conectado";
+		}
 	}
 
-}
 
-?>
+	?>
 
 
 	<div class="container" style="margin:auto; width: 2000px; height: 1200px;display: flex; flex-wrap: wrap; align-content: center; padding: 324px; ;">
@@ -118,24 +123,24 @@ if( isset($_HOST['username'])){
 
 
 	<div class="modal fade" method=modal; id="myModal" role="dialog">
-    <div class="modal-dialog">
-    
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">¡Alerta!</h4>
-        </div>
-        <div class="modal-body">
-          <p>Rellene los espacios en blanco</p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar.</button>
-        </div>
-      </div>
-      
-    </div>
-  </div>
+		<div class="modal-dialog">
+
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">¡Alerta!</h4>
+				</div>
+				<div class="modal-body">
+					<p>Rellene los espacios en blanco</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar.</button>
+				</div>
+			</div>
+
+		</div>
+	</div>
 
 </body>
 
