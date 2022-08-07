@@ -2,10 +2,10 @@
 
 
 $conn = new mysqli($serverName,$serverUser,$dbPassword,$dbName);
-$serverName="localhost";
-$serverUser="HR";
-$dbPassword="oracle";// put empty by default
-$dbName="hospitals";
+$serverName="192.168.100.67";
+$serverUser="";
+$dbPassword="";// put empty by default
+$dbName="Deiby";
 
 if(! $conn){// check if connection to database is not available
 	die("Error connecting to database. ");
