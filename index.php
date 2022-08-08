@@ -67,7 +67,20 @@
 	<?php
 
 
-	session_start();
+$enlace = mysqli_connect('192.168.100.67', 'DEIBY', 'Deiby', 'DEIBY', '1521', 'orcl');
+if (!$enlace) {
+
+    die('No pudo conectar: ');
+}
+
+
+if ($enlace) {
+	header('home.php');
+} else {
+	echo "no conectado";
+}
+
+	/*	session_start();
 
 	$error = '';
 
@@ -82,7 +95,7 @@
 
 			/*mysqli_real_escape_string($conn,
 			$dbPassword = mysqli_real_escape_string($conn, $_POST['userPass']);
-			*/
+			
 			$serverUser =  $_POST['username'];
 			$dbPassword = $_POST['userPass'];
 			$serverName = "192.168.100.67";
@@ -109,8 +122,10 @@
 
 			mysqli_close($conn);
 		}
-	}
 
+
+	}
+	*/
 
 	/*	if (isset($_HOST['username'])) {
 
@@ -125,17 +140,11 @@
 				$count = mysqli_num_rows($result);
 
 				if ($count == 1) {
-
-					header("location:home.php");
 				}
 			}
 		}
 
-		if (conexion()) {
-			echo "conectado";
-		} else {
-			echo "no conectado";
-		}
+
 	}
 
 	//include 'DBConnection.php';

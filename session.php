@@ -1,22 +1,25 @@
 <?php
 
 
+define('HOST','3000' );
+define('PORT', '1521');
+define( 'NAME','XE');
+define('USER','DEIBY' );
+define( 'PASSWORD','DEIBY');
 
 
-$conn = $conn = new mysqli($serverName, $serverUser, $dbPassword, $dbName);
+$enlace = mysqli_connect('192.168.100.67', 'DEIBY', 'Deiby', 'DEIBY', '1521', 'XE');
 
 
-$serverUser = mysqli_real_escape_string($conn, $_POST['username']);
-$dbPassword = mysqli_real_escape_string($conn, $_POST['userPass']);
-$serverName = "192.168.100.67";
-$dbName = "Deiby";
 
-session_start();
+if (!$enlace) {
 
-$user_check = $_SESSION ['username'] ;
+    die('No pudo conectar: ');
+}
+
+echo 'conectado';
+mysqli_close($enlace);
 
 
-$query  = "SELECT username from administradores from login where username = '$user_check' ";
-$ses_sql = mysqli_query($conn,$query);
-$row = mysqli_fetch_assoc($ses_sql);
-$login_session = $row ['username'];
+
+?>|
