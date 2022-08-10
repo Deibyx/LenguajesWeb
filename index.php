@@ -66,43 +66,55 @@
 
 	<?php
 
+	include 'DBConnection.php';
+	session_start();
 
-$enlace = mysqli_connect('192.168.100.67', 'DEIBY', 'Deiby', 'DEIBY', '1521', 'orcl');
-if (!$enlace) {
+	//$error = '';
+	//$username = '';
+	//$userPasswor
+	/*if (isset($_SESSION['username'])) {
 
-    die('No pudo conectar: ');
-}
+		header("Location: Home.php");
+	}
+*/
 
-
-if ($enlace) {
-	header('home.php');
-} else {
-	echo "no conectado";
-}
-
-	/*	session_start();
-
-	$error = '';
-
-	if (isset($_POST['login'])) {
-
-		if (empty($_POST['username']) || empty($_POST['userPass'])) {
+	$username = $_POST["username"];
+	$userPassword = $_POST["password"];
 
 
-			$error = "Username or Password not valid";
-		} else {
+
+	/*if (isset($_POST['login'])) {
 
 
-			/*mysqli_real_escape_string($conn,
-			$dbPassword = mysqli_real_escape_string($conn, $_POST['userPass']);
+
+		$sql_String = "SELECT * FROM administradores where username =$username AND password = $userPassword";
+
+
+		$sql_login = oci_parse($DBConn,$sql_String);
+
+		 oci_execute($sql_login);
+
+		 while (oci_fetch_array($sql_login)){
 			
-			$serverUser =  $_POST['username'];
-			$dbPassword = $_POST['userPass'];
-			$serverName = "192.168.100.67";
-			$dbName = "Deiby";
+			$password = oci_result($sql_login,$PASSWORD);
 
-			$conn = new mysqli($serverName, $serverUser, $dbPassword, $dbName);
+		 }
 
+		if (empty($_POST['username']) || empty($_POST['password'])) {
+
+			$error = ("Favor completar los espacios");
+		} else {
+			if ($result->num_rows > 0) {
+				$row = mysqli_fetch_assoc($result);
+				$_SESSION['username'] = $row['username'];
+				header("Location: home.php");
+			} else {
+
+				echo "<script> alert ('Email o contraseña incorrecta.') </script> ";
+			}
+		}
+*/
+	/*
 			$query = "SELECT username, userPass from administradores where username=? AND contrasena=? LIMIT 1";
 
 			$stmt = $conn->prepare($query);
@@ -124,10 +136,10 @@ if ($enlace) {
 		}
 
 
-	}
+	
 	*/
 
-	/*	if (isset($_HOST['username'])) {
+	/*	if (isset($_POST['username'])) {
 
 		if (isset($_POST['login'])) {
 
@@ -147,9 +159,13 @@ if ($enlace) {
 
 	}
 
-	//include 'DBConnection.php';
 
-*/
+
+
+	}
+
+	*/
+
 	?>
 
 
@@ -164,16 +180,16 @@ if ($enlace) {
 				<h4 class="card-title">Enter username and password to log on:</h4>
 				<p class="card-text">
 
-				<div class="form-bottom" style="text-align:right;">
+				<div class="form-bottom" style="text-align:right;" action="Home.php">
 					<!-- action="Home.php" -->
-					<form role="form" method="POST" class="login-form">
+					<form role="form" method="POST" action="Home.php" class="login-form">
 						<div class="form-group">
 							<label class="sr-only" for="form-username">Username</label>
 							<input type="text" name="username" placeholder="Username" class="form-username form-control" id="form-username">
 						</div>
 						<div class="form-group">
 							<label class="sr-only" for="form-password">Password</label>
-							<input type="password" name="userPass" placeholder="Password" class="form-password form-control" id="form-password">
+							<input type="password" name="password" placeholder="Password" class="form-password form-control" id="form-password">
 						</div>
 						<button type="submit" class="btn" name="login">Sign in!</button>
 					</form>

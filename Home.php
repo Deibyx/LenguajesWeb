@@ -1,10 +1,10 @@
 <?php
-
+/*
 include('session.php');
 if (!isset($_SESSION['login_user'])) {
   header("location: index.php");
 }
-
+*/
 
 ?>
 
@@ -75,6 +75,7 @@ if (!isset($_SESSION['login_user'])) {
 
 </head>
 
+
 <body>
 
   <nav class="navbar navbar-expand-lg border-bottom navbar-themed" id="main-nav-bar">
@@ -99,6 +100,7 @@ if (!isset($_SESSION['login_user'])) {
       <ul class="navbar-nav mr-auto mt-2 mt-md-0">
 
         <li class="nav-item">
+
           <a class="nav-link" href="index.php" style="font-size:20px ;font-family: Arial, Helvetica, sans-serif;">Logout</a>
 
         </li>
@@ -120,11 +122,43 @@ if (!isset($_SESSION['login_user'])) {
 
   <div>
 
-    <table class="table table-hover table-striped " style="font-family: Arial, Helvetica, sans-serif; font-size:4ch; margin-top:5%; width: 60%;margin-left: 500px; margin-right: 500px;">
+  <?php
+
+include 'DBConnection.php';
+session_reset();
+
+$stid = ociparse($DBConn,'SELECT * FROM administradores');
+
+oci_execute($stid);
+
+$nrows = oci_fetch_all($stid, $res, null, null, OCI_FETCHSTATEMENT_BY_ROW + OCI_NUM);
+
+
+//oci_fetch_all($stid, $res);
+// echo "$nrows rows fetched<br>\n";
+//var_dump($res);
+//var_export($res);
+/*
+echo "<table border='1'>\n";
+foreach ($res as $col) {
+    echo "<tr>\n";
+    foreach ($col as $item) {
+        echo "    <td>".($item !== null ? htmlentities($item, ENT_QUOTES) : "")."</td>\n";
+    }
+    echo "</tr>\n";
+}
+echo "</table>\n";
+*/
+
+
+//oci_close($conn)
+
+  ?>
+    <table class="table table-hover " style="font-family: Arial, Helvetica, sans-serif; font-size:4ch; margin-top:5%; width: 60%;margin-left: 500px; margin-right: 500px;">
 
       <thead>
         <tr>
-          <th>#</th>
+          <th>Cédula</th>
           <th>Nombre</th>
           <th>S. Nombre</th>
           <th>P. Apellido</th>
@@ -132,80 +166,25 @@ if (!isset($_SESSION['login_user'])) {
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <th scope="row">1</th>
-          <td class="table-secondary">Content</td>
-          <td class="table-secondary">Content</td>
-          <td class="table-secondary">Content</td>
-          <td class="table-secondary">Content</td>
-        </tr>
-        <tr>
-          <th scope="row">2</th>
-          <td class="table-secondary">Content</td>
-          <td class="table-secondary">Content</td>
-          <td class="table-secondary">Content</td>
-          <td class="table-secondary">Content</td>
-        </tr>
+        <tr class="table-secondary" >
+          <?php 
+         
+               foreach ($res as $col) {
+          echo "<tr>";
+          foreach ($col as $item) {
+            echo "    <td >".($item !== null ? htmlentities($item, ENT_QUOTES) : " ")."</td>"; 
+          }
+          echo "</tr>";
+      }
 
-        <tr>
-          <th scope="row">3</th>
-          <td class="table-secondary">Content</td>
-          <td class="table-secondary">Content</td>
-          <td class="table-secondary">Content</td>
-          <td class="table-secondary">Content</td>
-        </tr>
-        <tr>
-          <th scope="row">4</th>
-          <td class="table-secondary">Content</td>
-          <td class="table-secondary">Content</td>
-          <td class="table-secondary">Content</td>
-          <td class="table-secondary">Content</td>
-        </tr>
 
-        <tr>
-          <th scope="row">5</th>
-          <td class="table-secondary">Content</td>
-          <td class="table-secondary">Content</td>
-          <td class="table-secondary">Content</td>
-          <td class="table-secondary">Content</td>
-        </tr>
-        <tr>
-          <th scope="row">6</th>
-          <td class="table-secondary">Content</td>
-          <td class="table-secondary">Content</td>
-          <td class="table-secondary">Content</td>
-          <td class="table-secondary">Content</td>
-        </tr>
-        <tr>
-          <th scope="row">7</th>
-          <td class="table-secondary">Content</td>
-          <td class="table-secondary">Content</td>
-          <td class="table-secondary">Content</td>
-          <td class="table-secondary">Content</td>
-        </tr>
-        <tr>
-          <th scope="row">8</th>
-          <td class="table-secondary">Content</td>
-          <td class="table-secondary">Content</td>
-          <td class="table-secondary">Content</td>
-          <td class="table-secondary">Content</td>
-        </tr>
 
-        <tr>
-          <th scope="row">9</th>
-          <td class="table-secondary">Content</td>
-          <td class="table-secondary">Content</td>
-          <td class="table-secondary">Content</td>
-          <td class="table-secondary">Content</td>
-        </tr>
-        <tr>
-          <th scope="row">10</th>
-          <td class="table-secondary">Content</td>
-          <td class="table-secondary">Content</td>
-          <td class="table-secondary">Content</td>
-          <td class="table-secondary">Content</td>
-        </tr>
+      oci_free_statement($stid);
+      //oci_close($conn);
+       ?>
 
+        </tr>
+        
       </tbody>
     </table>
   </div>
