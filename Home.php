@@ -101,7 +101,12 @@ if (!isset($_SESSION['login_user'])) {
 
         <li class="nav-item">
 
-          <a class="nav-link" href="index.php" style="font-size:20px ;font-family: Arial, Helvetica, sans-serif;">Logout</a>
+          <a class="nav-link" href="index.php" style="font-size:20px ;font-family: Arial, Helvetica, sans-serif;"> 
+          <?php 
+          
+        //*include 'logout.php';
+          ?>
+          Logout</a>
 
         </li>
       </ul>
@@ -112,7 +117,7 @@ if (!isset($_SESSION['login_user'])) {
 
         <li class="nav-item">
           <a style="font-size:20px ;font-family: Arial, Helvetica, sans-serif;">Home</a>
-
+          <a style="font-size:20px ;font-family: Arial, Helvetica, sans-serif;"><? //=$_SESSION['sess_user']; ?></a>
         </li>
       </ul>
     </div>
@@ -180,7 +185,7 @@ echo "</table>\n";
 
 
       oci_free_statement($stid);
-      //oci_close($conn);
+      
        ?>
 
         </tr>

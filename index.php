@@ -69,102 +69,64 @@
 	include 'DBConnection.php';
 	session_start();
 
-	//$error = '';
-	//$username = '';
-	//$userPasswor
-	/*if (isset($_SESSION['username'])) {
+	if (isset($_POST['username'])) {
 
-		header("Location: Home.php");
-	}
-*/
+		$username =  $_POST['username'];
+		$password = $_POST['password'];
 
-	$username = $_POST["username"];
-	$userPassword = $_POST["password"];
+		if (empty($username) || empty($password)) {
 
-
-
-	/*if (isset($_POST['login'])) {
-
-
-
-		$sql_String = "SELECT * FROM administradores where username =$username AND password = $userPassword";
-
-
-		$sql_login = oci_parse($DBConn,$sql_String);
-
-		 oci_execute($sql_login);
-
-		 while (oci_fetch_array($sql_login)){
-			
-			$password = oci_result($sql_login,$PASSWORD);
-
-		 }
-
-		if (empty($_POST['username']) || empty($_POST['password'])) {
-
-			$error = ("Favor completar los espacios");
+			echo "Complete los campos";
 		} else {
-			if ($result->num_rows > 0) {
-				$row = mysqli_fetch_assoc($result);
-				$_SESSION['username'] = $row['username'];
-				header("Location: home.php");
-			} else {
 
-				echo "<script> alert ('Email o contraseña incorrecta.') </script> ";
-			}
-		}
-*/
-	/*
-			$query = "SELECT username, userPass from administradores where username=? AND contrasena=? LIMIT 1";
+			$stid = ociparse($DBConn, 'SELECT * FROM administradores ');
+			oci_execute($stid);
 
-			$stmt = $conn->prepare($query);
-			$stmt->bind_param("ss", $serverUser, $dbPassword);
-			$stmt->execute();
-			$stmt->bind_result($serverUser, $dbPassword);
-			$stmt->store_result();
-
-			if ($stmt->fetch()) {
-
-				$_SESSION['username'] = $serverUser;
-				header("location:home.php");
-			} else {
-
-				$error = "Username or Password invalid";
-			}
-
-			mysqli_close($conn);
-		}
+			//$nrows = oci_fetch_all($stid, $resultado, 0 ,+1 , OCI_FETCHSTATEMENT_BY_COLUMN + OCI_NUM);
 
 
-	
-	*/
+			while (($row = oci_fetch_array($stid)) != false) {
+				// Use the uppercase column names for the associative array indices
+				// echo $row[1] . " es el usuario ". "<br>\n";
+				// echo $row[2] . " es el password ". "<br>\n";
 
-	/*	if (isset($_POST['username'])) {
+				//$Compare1 = $row[1];
+				//$Compare2 = $row[2];
 
-		if (isset($_POST['login'])) {
 
-			if ($serverUser != "" && $dbPassword != "") {
+				// echo "$username". " es el usuario ingresado ". "<br>\n";
 
-				$sql = "Select c1  from administradores WHERE username = '$serverUser' and 	contrasena = 'dbPassword' ";
-				$result = mysqli_query($conn, $sql);
-				$row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+				//echo "$password". " es la contra  ingresado ". "<br>\n";
 
-				$count = mysqli_num_rows($result);
+				if ($row[1] == $username && $row[2] == $password) {
 
-				if ($count == 1) {
+					//session_destroy();
+					header("Location: http://localhost/LenguajesWeb/Home.php ");
+
+					//echo "Si es la clave";
+
+					//exit;
+
+				} else {
 				}
 			}
+
+
+			echo ' <script> alert ("La contraseña es incorrecta 🤐") </script> ';
+			//echo "$nrows rows fetched<br>\n";
+			// var_dump($res);
+			//var_export($resultado);
+
+
+			//filter_var_array($nrows);
+
+			//			echo "$nrows";
+			//		echo"$username";
+			//		echo"$password";
+
 		}
-
-
 	}
 
-
-
-
-	}
-
-	*/
 
 	?>
 
@@ -180,9 +142,11 @@
 				<h4 class="card-title">Enter username and password to log on:</h4>
 				<p class="card-text">
 
-				<div class="form-bottom" style="text-align:right;" action="Home.php">
+				<div class="form-bottom" style="text-align:right;">
+
+
 					<!-- action="Home.php" -->
-					<form role="form" method="POST" action="Home.php" class="login-form">
+					<form role="form" method="POST" class="login-form">
 						<div class="form-group">
 							<label class="sr-only" for="form-username">Username</label>
 							<input type="text" name="username" placeholder="Username" class="form-username form-control" id="form-username">
@@ -200,26 +164,6 @@
 		</div>
 	</div>
 
-
-	<div class="modal fade" method=modal; id="myModal" role="dialog">
-		<div class="modal-dialog">
-
-			<!-- Modal content-->
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal">&times;</button>
-					<h4 class="modal-title">¡Alerta!</h4>
-				</div>
-				<div class="modal-body">
-					<p>Rellene los espacios en blanco</p>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar.</button>
-				</div>
-			</div>
-
-		</div>
-	</div>
 
 </body>
 
