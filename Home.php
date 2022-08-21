@@ -67,6 +67,9 @@ if (!isset($_SESSION['login_user'])) {
   <link rel="stylesheet" href="bd\css\toggle-bootstrap.css">
   <link rel="stylesheet" href="bd\css\toggle-bootstrap.min.css">
 
+  <link rel="stylesheet" href="dist\css\outwrap.css">
+  <link rel="stylesheet" href="dist\css\tablewrap.css">
+
   <!--<script src=" librerias/bootstrap/js/bootstrap.js">
   </script>-->
 
@@ -125,14 +128,14 @@ if (!isset($_SESSION['login_user'])) {
   </nav>
 
 
-  <div>
-
+  <div class="outer wrapper " >
+  <div class="table-wrapper ">
   <?php
 
 include 'DBConnection.php';
 session_reset();
 
-$stid = ociparse($DBConn,'SELECT * FROM administradores');
+$stid = ociparse($DBConn,'SELECT * FROM padronElectoral');
 
 oci_execute($stid);
 
@@ -161,16 +164,16 @@ echo "</table>\n";
   ?>
     <table class="table table-hover " style="font-family: Arial, Helvetica, sans-serif; font-size:4ch; margin-top:5%; width: 60%;margin-left: 500px; margin-right: 500px;">
 
-      <thead>
+      <thead style="display: block; ">
         <tr>
-          <th>Cédula</th>
-          <th>Nombre</th>
-          <th>S. Nombre</th>
-          <th>P. Apellido</th>
-          <th>S. Apellido</th>
+          <th style="position: sticky;">Cédula</th>
+          <th style="position: sticky;">Nombre</th>
+          <th style="position: sticky;">S. Nombre</th>
+          <th style="position: sticky;">P. Apellido</th>
+          <th style="position: sticky;">S. Apellido</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody style="display: block; overflow-y: auto; overflow-y: hidden">
         <tr class="table-secondary" >
           <?php 
          
@@ -192,6 +195,9 @@ echo "</table>\n";
         
       </tbody>
     </table>
+
+    </div>
+
   </div>
 
 

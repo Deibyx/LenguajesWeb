@@ -76,7 +76,7 @@
 
 		if (empty($username) || empty($password)) {
 
-			echo "Complete los campos";
+			echo ' <script> alert ("Complete los campos. 🤐") </script> ';
 		} else {
 
 			$stid = ociparse($DBConn, 'SELECT * FROM administradores ');
