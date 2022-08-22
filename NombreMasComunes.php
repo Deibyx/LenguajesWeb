@@ -108,139 +108,77 @@
   </nav>
 
 
-  <div>
+  <?php
 
-    <table class="table table-hover table-striped " style="font-family: Arial, Helvetica, sans-serif; font-size:4ch; margin-top:5%; width: 60%;margin-left: 500px; margin-right: 500px;">
+include 'DBConnection.php';
+session_reset();
 
-      <thead>
-        <tr>
-          <th>#</th>
-          <th>Nombre</th>
-          <th>S. Nombre</th>
-          <th>P. Apellido</th>
-          <th>S. Apellido</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <th scope="row">1</th>
-          <td class="table-secondary">Content</td>
-          <td class="table-secondary">Content</td>
-          <td class="table-secondary">Content</td>
-          <td class="table-secondary">Content</td>
-        </tr>
-        <tr>
-          <th scope="row">2</th>
-          <td class="table-secondary">Content</td>
-          <td class="table-secondary">Content</td>
-          <td class="table-secondary">Content</td>
-          <td class="table-secondary">Content</td>
-        </tr>
+$stid = ociparse($DBConn,'SELECT * FROM MASCOMUNES');
 
-        <tr>
-          <th scope="row">3</th>
-          <td class="table-secondary">Content</td>
-          <td class="table-secondary">Content</td>
-          <td class="table-secondary">Content</td>
-          <td class="table-secondary">Content</td>
-        </tr>
-        <tr>
-          <th scope="row">4</th>
-          <td class="table-secondary">Content</td>
-          <td class="table-secondary">Content</td>
-          <td class="table-secondary">Content</td>
-          <td class="table-secondary">Content</td>
-        </tr>
+oci_execute($stid);
 
-        <tr>
-          <th scope="row">5</th>
-          <td class="table-secondary">Content</td>
-          <td class="table-secondary">Content</td>
-          <td class="table-secondary">Content</td>
-          <td class="table-secondary">Content</td>
-        </tr>
-        <tr>
-          <th scope="row">6</th>
-          <td class="table-secondary">Content</td>
-          <td class="table-secondary">Content</td>
-          <td class="table-secondary">Content</td>
-          <td class="table-secondary">Content</td>
-        </tr>
-        <tr>
-          <th scope="row">7</th>
-          <td class="table-secondary">Content</td>
-          <td class="table-secondary">Content</td>
-          <td class="table-secondary">Content</td>
-          <td class="table-secondary">Content</td>
-        </tr>
-        <tr>
-          <th scope="row">8</th>
-          <td class="table-secondary">Content</td>
-          <td class="table-secondary">Content</td>
-          <td class="table-secondary">Content</td>
-          <td class="table-secondary">Content</td>
-        </tr>
-
-        <tr>
-          <th scope="row">9</th>
-          <td class="table-secondary">Content</td>
-          <td class="table-secondary">Content</td>
-          <td class="table-secondary">Content</td>
-          <td class="table-secondary">Content</td>
-        </tr>
-        <tr>
-          <th scope="row">10</th>
-          <td class="table-secondary">Content</td>
-          <td class="table-secondary">Content</td>
-          <td class="table-secondary">Content</td>
-          <td class="table-secondary">Content</td>
-        </tr>
-
-      </tbody>
-    </table>
-  </div>
+$nrows = oci_fetch_all($stid, $res, null, null, OCI_FETCHSTATEMENT_BY_ROW + OCI_NUM);
 
 
+//oci_fetch_all($stid, $res);
+// echo "$nrows rows fetched<br>\n";
+//var_dump($res);
+//var_export($res);
+/*
+echo "<table border='1'>\n";
+foreach ($res as $col) {
+    echo "<tr>\n";
+    foreach ($col as $item) {
+        echo "    <td>".($item !== null ? htmlentities($item, ENT_QUOTES) : "")."</td>\n";
+    }
+    echo "</tr>\n";
+}
+echo "</table>\n";
+*/
+
+//oci_close($conn)
+
+  ?>
 
 
+  
+<div >
 
-  <div class="container-fluid mt-5" style="font-family: Arial, Helvetica, sans-serif; font-size:5ch; width: 40%; margin-left: 1020px;">
+<table class="table table-hover table-wrapper "  
 
-    <div class="card mx-2" style="margin-top:15%;width: 1000px; position: fixed;  ">
-      <div class="row mb-2 ">
+style=" width:65%;height:290px ;Table-layout: fixed; display: block;font-family: Arial, Helvetica, sans-serif; font-size:4ch; margin-top:2%;margin-left: 20%; border: 1px solid;">
 
-        <div class="col-md-2 col-sm-2 col-xs-2" style="padding-left: 80%;">
-          <div class="footer-text pull-right">
+  <thead style=" border: 1px solid; ">
+    <tr>
+      
+      <th style="width:9%;;border: 1px solid; text-align: center;">Nombre</th>
+      
+    </tr>
+  </thead>
+  <tbody style="border: 1px solid;">
+    <tr class="table-secondary" style="border: 1px solid; width:50%; " >
+      <?php 
+     
+           foreach ($res as $col) {
+      echo "<tr>";
+      foreach ($col as $item) {
+        echo "<td  >".($item !== null ? htmlentities($item, ENT_QUOTES) : " "). "  "."</td>"; 
+      }
+      echo "</tr>";
+  }
 
-            <div class="mt-1">
-              <nav aria-label="...">
-                <ul class="pagination">
-                  <li class="page-item disabled">
-                    <span class="page-link">Previous</span>
-                  </li>
-                  <li class="page-item">
-                    <a class="page-link" href="#!">1</a>
-                  </li>
-                  <li class="page-item active">
-                    <span class="page-link">
-                      2
-                      <span class="sr-only">(current)</span>
-                    </span>
-                  </li>
-                  <li class="page-item">
-                    <a class="page-link" href="#!">3</a>
-                  </li>
-                  <li class="page-item">
-                    <a class="page-link" href="#!">Next</a>
-                  </li>
-                </ul>
-              </nav>
-            </div>
+  oci_free_statement($stid);
+  
+   ?>
 
-          </div>
-        </div>
+    </tr>
+    
+  </tbody>
+</table>
 
-      </div>
+</div>
+
+</div>
 
 
       <div class="row" style="font-size:10px;">

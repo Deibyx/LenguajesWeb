@@ -129,13 +129,13 @@ if (!isset($_SESSION['login_user'])) {
 
 
   <div class="outer wrapper " >
-  <div class="table-wrapper ">
+
   <?php
 
 include 'DBConnection.php';
 session_reset();
 
-$stid = ociparse($DBConn,'SELECT * FROM padronElectoral');
+$stid = ociparse($DBConn,'SELECT * FROM padronElectoral WHERE codelec = 301002');
 
 oci_execute($stid);
 
@@ -158,34 +158,39 @@ foreach ($res as $col) {
 echo "</table>\n";
 */
 
-
 //oci_close($conn)
 
   ?>
-    <table class="table table-hover " style="font-family: Arial, Helvetica, sans-serif; font-size:4ch; margin-top:5%; width: 60%;margin-left: 500px; margin-right: 500px;">
 
-      <thead style="display: block; ">
+<div >
+
+    <table class="table table-hover table-wrapper "  
+    
+    style=" width:65%;height:1000px ;Table-layout: fixed; display: block;font-family: Arial, Helvetica, sans-serif; font-size:4ch; margin-top:2%;margin-left: 20%; border: 1px solid;">
+
+      <thead style=" border: 1px solid; ">
         <tr>
-          <th style="position: sticky;">Cédula</th>
-          <th style="position: sticky;">Nombre</th>
-          <th style="position: sticky;">S. Nombre</th>
-          <th style="position: sticky;">P. Apellido</th>
-          <th style="position: sticky;">S. Apellido</th>
+          <th style="width:5.5%; border: 1px solid;text-align: center;">Cédula</th>
+          <th style="width:0%;border: 1px solid;text-align: center;">Codigo Elec.</th>
+          <th style="width:4%;;border: 1px solid;text-align: center;">Fecha Ven.</th>
+          <th style="width:9%;;border: 1px solid; text-align: center;">Nombre</th>
+          <th style="width:9%;;border: 1px solid;text-align: center;">Primer Apellido</th>
+          <th style="width:6%;;border: 1px solid;text-align: center;">Segundo Apellido</th>
+          <th style="width:6%;;border: 1px solid;text-align: center;">Fecha Nacimiento</th>
+          
         </tr>
       </thead>
-      <tbody style="display: block; overflow-y: auto; overflow-y: hidden">
-        <tr class="table-secondary" >
+      <tbody style="border: 1px solid;">
+        <tr class="table-secondary" style="border: 1px solid; width:50%; " >
           <?php 
          
                foreach ($res as $col) {
           echo "<tr>";
           foreach ($col as $item) {
-            echo "    <td >".($item !== null ? htmlentities($item, ENT_QUOTES) : " ")."</td>"; 
+            echo "<td  >".($item !== null ? htmlentities($item, ENT_QUOTES) : " "). "  "."</td>"; 
           }
           echo "</tr>";
       }
-
-
 
       oci_free_statement($stid);
       
@@ -200,64 +205,6 @@ echo "</table>\n";
 
   </div>
 
-
-
-
-
-  <div class="container-fluid mt-5" style="font-family: Arial, Helvetica, sans-serif; font-size:5ch; width: 40%; margin-left: 1020px;">
-
-    <div class="card mx-2" style="margin-top:15%;width: 1000px; position: fixed;  ">
-      <div class="row mb-2 ">
-
-        <div class="col-md-2 col-sm-2 col-xs-2" style="padding-left: 80%;">
-          <div class="footer-text pull-right">
-
-            <div class="mt-1">
-              <nav aria-label="...">
-                <ul class="pagination">
-                  <li class="page-item disabled">
-                    <span class="page-link">Previous</span>
-                  </li>
-                  <li class="page-item">
-                    <a class="page-link" href="#!">1</a>
-                  </li>
-                  <li class="page-item active">
-                    <span class="page-link">
-                      2
-                      <span class="sr-only">(current)</span>
-                    </span>
-                  </li>
-                  <li class="page-item">
-                    <a class="page-link" href="#!">3</a>
-                  </li>
-                  <li class="page-item">
-                    <a class="page-link" href="#!">Next</a>
-                  </li>
-                </ul>
-              </nav>
-            </div>
-
-          </div>
-        </div>
-
-      </div>
-
-
-      <div class="row" style="font-size:10px;">
-
-        <div class="col-md-5 col-sm-5 col-xs-5">
-
-          <div class="pull-left">
-
-            <p><i class="fa fa-copyright"></i> &nbsp; 2022 Lenguajes</p>
-
-          </div>
-
-        </div>
-      </div>
-    </div>
-
-  </div>
 
 
 </body>
