@@ -74,7 +74,7 @@
     </div>
 
     <div id="mySidebar" class="sidebar">
-      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
       <a href="Home.php">Home</a>
       <a href="Consultas.php">Consultas</a>
       <a href="NombreMasComunes.php">Nombres Más comunes</a>
@@ -82,7 +82,7 @@
       <a href="Electores.php">Cantidad de Electores</a>
       <a href="ReportesConsolidados.php">Reporte Consolidados</a>
       <a href="Bitacora.php">Bitácora de Consultas</a>
-      <a href="CargaDatos.php.php">Carga de Datos</a>
+      <a href="ConsultaNombres.php">Consultas Nombres</a>
     </div>
 
     <div class="collapse navbar-collapse" id="navbarTogglerDemo03" style="position: absolute; right: 10px; width: 4%; padding: 1px; align-items: center;">

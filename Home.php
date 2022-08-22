@@ -96,7 +96,7 @@ if (!isset($_SESSION['login_user'])) {
       <a href="Electores.php">Cantidad de Electores</a>
       <a href="ReportesConsolidados.php">Reporte Consolidados</a>
       <a href="Bitacora.php">Bitácora de Consultas</a>
-      <a href="CargaDatos.php.php">Carga de Datos</a>
+      <a href="ConsultaNombres.php">Consultas Nombres</a>
     </div>
 
     <div class="collapse navbar-collapse" id="navbarTogglerDemo03" style="position: absolute; right: 10px; width: 4%; padding: 1px; align-items: center;">
