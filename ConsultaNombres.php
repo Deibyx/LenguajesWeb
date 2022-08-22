@@ -119,24 +119,46 @@
     session_reset();
 
 
-    if (isset($_POST['Nombre'])) {
+    if (isset($_POST['NOMBRE'])) {
 
-        $nombre =  $_POST['Nombre'];
+        $Nombre =  $_POST['NOMBRE'];
         $apellidoUno = $_POST['ApellidoUno'];
         $apellidoDos = $_POST['ApellidoDos'];
 
 
-        echo   $nombre;
+       // echo   $Nombre;
 
-        if (empty($apellidoUno) || ($apellidoDos)) {
+            if(empty ($apellidoUno)){
 
-            $stid = ociparse($DBConn, 'SELECT * FROM padronElectoral Where Nombre =' . $nombre);
-            oci_execute($stid);
-            $nrows = oci_fetch_all($stid, $res, null, null, OCI_FETCHSTATEMENT_BY_ROW + OCI_NUM);
-            while (($row = oci_fetch_array($stid)) != false) {
+                $stid = ociparse($DBConn, 'SELECT * FROM padronElectoral WHERE APELLIDOUNO = ' . "'" .$Nombre. "'"  );
+
+            
+                oci_execute($stid);
+
+               $nrows = oci_fetch_all($stid, $res, null, null, OCI_FETCHSTATEMENT_BY_ROW + OCI_NUM);
+        
+                echo $nrows;
+
+                while (($row = oci_fetch_array($stid)) != false) {
+                }
+
             }
+    
 
-        } elseif (empty($nombre) || empty($apellidoDos)) {
+     
+
+    
+
+
+    }
+     
+    /*
+    
+    
+    
+    
+    
+    elseif (empty($nombre) || empty($apellidoDos)) {
 
             $stid = ociparse($DBConn, 'SELECT * FROM padronElectoral Where ApellidoUno =' . $apellidoUno);
             oci_execute($stid);
@@ -154,10 +176,8 @@
             }
 
         }
-
-    }
-     
-    /*if (empty($nombre)) {
+    
+    if (empty($nombre)) {
 
             echo ' <script> alert ("Complete los campos. 🤐") </script> ';
         } else {
@@ -212,7 +232,7 @@
                     <form role="form" method="POST" class="login-form">
                         <div class="form-group">
                             <label class="sr-only" for="form-username">Nombre</label>
-                            <input type="text" name="Nombre" placeholder="Nombre" class="form-username form-control" id="Nombre">
+                            <input type="text" name="NOMBRE" placeholder="NOMBRE" class="form-username form-control" id="NOMBRE">
                         </div>
                         <div class="form-group">
                             <label class="sr-only" for="form-username">Apellido Uno</label>
@@ -246,7 +266,6 @@
                         <th style="width:9%;;border: 1px solid;text-align: center;">Primer Apellido</th>
                         <th style="width:6%;;border: 1px solid;text-align: center;">Segundo Apellido</th>
                         <th style="width:6%;;border: 1px solid;text-align: center;">Fecha Nacimiento</th>
-                        <th style="width:6%;;border: 1px solid;text-align: center;">Edad</th>
                     </tr>
                 </thead>
 
