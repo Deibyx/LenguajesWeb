@@ -74,15 +74,16 @@
         </div>
 
         <div id="mySidebar" class="sidebar">
-        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-      <a href="Home.php">Home</a>
-      <a href="Consultas.php">Consultas</a>
-      <a href="NombreMasComunes.php">Nombres Más comunes</a>
-      <a href="NombreMenosComunes.php">Nombres Menos comunes</a>
-      <a href="Electores.php">Cantidad de Electores</a>
-      <a href="ReportesConsolidados.php">Reporte Consolidados</a>
-      <a href="Bitacora.php">Bitácora de Consultas</a>
-      <a href="ConsultaNombres.php">Consultas Nombres</a>
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+            <a href="Home.php">Home</a>
+            <a href="Consultas.php">Consultas</a>
+            <a href="NombreMasComunes.php">Nombres Más comunes</a>
+            <a href="NombreMenosComunes.php">Nombres Menos comunes</a>
+            <a href="Electores.php">Cantidad de Electores</a>
+            <a href="ReportesConsolidados.php">Reporte Consolidados</a>
+            <a href="Bitacora.php">Bitácora de Consultas</a>
+            <a href="ConsultaNombres.php">Consultas Nombres</a>
+            <a href="CRUD.php">CRUD</a>
         </div>
 
         <div class="collapse navbar-collapse" id="navbarTogglerDemo03" style="
@@ -94,9 +95,7 @@
   ">
 
             <ul class="navbar-nav mr-auto mt-2 mt-md-0">
-
                 <a class="nav-link" href="index.php" style="font-size:20px ;font-family: Arial, Helvetica, sans-serif;">Logout</a>
-                </li>
             </ul>
         </div>
 
@@ -134,10 +133,10 @@
                 </form>
             </div>
 
-            </p>
+            
         </div>
     </div>
-    </div>
+   
 
 
     <?php
@@ -233,21 +232,21 @@
     </div>
 
 
-        <div class="row" style="font-size:10px;">
+    <div class="row" style="font-size:10px;">
 
-            <div class="col-md-5 col-sm-5 col-xs-5">
+        <div class="col-md-5 col-sm-5 col-xs-5">
 
-                <div class="pull-left">
+            <div class="pull-left">
 
-                    <p><i class="fa fa-copyright"></i> &nbsp; 2022 Lenguajes</p>
-
-                </div>
+                <p><i class="fa fa-copyright"></i> &nbsp; 2022 Lenguajes</p>
 
             </div>
-        </div>
-        </div>
 
         </div>
+    </div>
+    </div>
+
+    </div>
 
 
 </body>

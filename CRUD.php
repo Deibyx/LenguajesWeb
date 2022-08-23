@@ -1,3 +1,13 @@
+<?php
+/*
+include('session.php');
+if (!isset($_SESSION['login_user'])) {
+  header("location: index.php");
+}
+*/
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -57,6 +67,9 @@
     <link rel="stylesheet" href="bd\css\toggle-bootstrap.css">
     <link rel="stylesheet" href="bd\css\toggle-bootstrap.min.css">
 
+    <link rel="stylesheet" href="dist\css\outwrap.css">
+    <link rel="stylesheet" href="dist\css\tablewrap.css">
+
     <!--<script src=" librerias/bootstrap/js/bootstrap.js">
   </script>-->
 
@@ -64,6 +77,7 @@
     <script src="librerias/alertifyjs/alertify.js"></script>
 
 </head>
+
 
 <body>
 
@@ -85,18 +99,18 @@
             <a href="ConsultaNombres.php">Consultas Nombres</a>
             <a href="CRUD.php">CRUD</a>
         </div>
-
-        <div class="collapse navbar-collapse" id="navbarTogglerDemo03" style="
-  position: absolute;
-  right: 10px;
-  width: 4%;
-  padding: 1px;
-  align-items: center;;
-  ">
-
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo03" style="position: absolute; right: 10px; width: 4%; padding: 1px; align-items: center;">
             <ul class="navbar-nav mr-auto mt-2 mt-md-0">
 
-                <a class="nav-link" href="index.php" style="font-size:20px ;font-family: Arial, Helvetica, sans-serif;">Logout</a>
+                <li class="nav-item">
+
+                    <a class="nav-link" href="index.php" style="font-size:20px ;font-family: Arial, Helvetica, sans-serif;">
+                        <?php
+
+                        //*include 'logout.php';
+                        ?>
+                        Logout</a>
+
                 </li>
             </ul>
         </div>
@@ -105,8 +119,9 @@
             <ul class="navbar-nav mr-auto mt-2 mt-md-0">
 
                 <li class="nav-item">
-                    <a style="font-size:20px ;font-family: Arial, Helvetica, sans-serif;">Consultas</a>
-
+                    <a style="font-size:20px ;font-family: Arial, Helvetica, sans-serif;">Home</a>
+                    <a style="font-size:20px ;font-family: Arial, Helvetica, sans-serif;"><? //=$_SESSION['sess_user']; 
+                                                                                            ?></a>
                 </li>
             </ul>
         </div>
@@ -117,188 +132,127 @@
     <?php
 
     include 'DBConnection.php';
+    
     session_reset();
 
+    if (isset($_POST['FechaNaci'])) {
 
-    if (isset($_POST['NOMBRE'])) {
+        $cedula =  $_POST['cedula'];
 
-        $Nombre =  $_POST['NOMBRE'];
-        $apellidoUno = $_POST['ApellidoUno'];
-        $apellidoDos = $_POST['ApellidoDos'];
+        $codelec = $_POST['codelec'];
 
+        $FechaVenci = $_POST['FechaVenci'];
 
-        // echo   $Nombre;
+        $nombre = $_POST['nombre'];
 
-        if (empty($apellidoUno)) {
+        $PrimerApellido = $_POST['PrimerApellido'];
 
-            $stid = ociparse($DBConn, 'SELECT * FROM padronElectoral WHERE APELLIDOUNO = ' . "'" . $Nombre . "'");
+        $SegundoApellid = $_POST['SegundoApellid'];
 
+        $FechaNaci = $_POST['FechaNaci'];
 
-            oci_execute($stid);
-
-            $nrows = oci_fetch_all($stid, $res, null, null, OCI_FETCHSTATEMENT_BY_ROW + OCI_NUM);
-
-            echo $nrows;
-
-            while (($row = oci_fetch_array($stid)) != false) {
-            }
-        }
-    }
-
-    /*
-    
-    
-    
-    
-    
-    elseif (empty($nombre) || empty($apellidoDos)) {
-
-            $stid = ociparse($DBConn, 'SELECT * FROM padronElectoral Where ApellidoUno =' . $apellidoUno);
-            oci_execute($stid);
-            $nrows = oci_fetch_all($stid, $res, null, null, OCI_FETCHSTATEMENT_BY_ROW + OCI_NUM);
-            while (($row = oci_fetch_array($stid)) != false) {
-            }
-
-        } else {
-
-
-            $stid = ociparse($DBConn, 'SELECT * FROM padronElectoral Where ApellidoDos =' . $apellidoDos);
-            oci_execute($stid);
-            $nrows = oci_fetch_all($stid, $res, null, null, OCI_FETCHSTATEMENT_BY_ROW + OCI_NUM);
-            while (($row = oci_fetch_array($stid)) != false) {
-            }
-
-        }
-    
-    if (empty($nombre)) {
+        if (empty($cedula) || empty($codelec) || empty($FechaVenci) || empty($nombre) || empty($PrimerApellido) || empty($SegundoApellid) || empty($FechaNaci)) {
 
             echo ' <script> alert ("Complete los campos. 🤐") </script> ';
+
         } else {
 
-            $stid = ociparse($DBConn, 'SELECT * FROM padronElectoral Where Cedula =' . $cedula);
+            $stid = oci_parse($DBConn, 'begin INSERTAR(:p1, :p2, :p3, :p4, :p5, :p6, :p7 ); end;');
 
-            $stidB = ociparse($DBConn, 'SELECT floor(months_between(SYSDATE, FECHANAC) /12) as edad FROM PadronElectoral where Cedula =' . $cedula);
+          /*  echo $cedula;
+            echo $codelec;
+            echo $FechaVenci;
+            echo $nombre;
+            echo $PrimerApellido;
+            echo $SegundoApellid;
+            echo $FechaNaci;
+            */          
+            oci_bind_by_name($stid, ':p1', $cedula);
+            oci_bind_by_name($stid, ':p2', $codelec);
+            oci_bind_by_name($stid, ':p3', $FechaVenci);
+            oci_bind_by_name($stid, ':p4', $nombre);
+            oci_bind_by_name($stid, ':p5', $PrimerApellido);
+            oci_bind_by_name($stid, ':p6', $SegundoApellid);
+            oci_bind_by_name($stid, ':p7', $FechaNaci);
 
             oci_execute($stid);
-            
-            oci_execute($stidB);
 
-            $nrows = oci_fetch_all($stid, $res, null, null, OCI_FETCHSTATEMENT_BY_ROW + OCI_NUM);
+           // oci_free_statement($stid);
+            //oci_close($conexión);
 
-            $nrowsB = oci_fetch_all($stidB, $resb, null, null, OCI_FETCHSTATEMENT_BY_ROW + OCI_NUM);
+            //      $stid = ociparse($DBConn, 'BEGIN INSERTAR(:v1,:v2,:v3,:v4,:v5,:v6,:v7); END;');
 
-            //echo $nrowsB;
+            //       oci_bind_by_name($stid, ':v1', $cedula);
+            //      oci_bind_by_name($stid, ':v2', $codelec);
+            //      oci_bind_by_name($stid, ':v3', $FechaVenci);
+            //      oci_bind_by_name($stid, ':v4', $nombre);
+            //    oci_bind_by_name($stid, ':v5', $PrimerApellido);
+            //     oci_bind_by_name($stid, ':v6', $SegundoApellid);
+            //     oci_bind_by_name($stid, ':v7', $FechaNaci);
+            //      oci_execute($stid);
 
-
- 
-            
-            while (($row = oci_fetch_array($stid)) != false) {
-            }
-
-
-            while(($row = oci_fetch_array($stidB)) != false){
-
-              
-
-            }
+            //oci_free_statement($stid);
 
         }
-
-    */
+    }
 
     ?>
 
 
-
-    <div style="margin-left:20%; width: 20%; height: 50%; margin-top:100px;">
+    <div style="margin-left: 29%; width: 60%; height: auto; margin-top: 10%;">
         <!-- border: 1px solid #c3c3c3; -->
 
         <div class="card text-white bg-secondary mb-2 d-inline-block" style=" max-width: 2000px; padding-left:20%; padding-right:20%;  ">
             <div class="card-header" style="padding-left:20%; padding-right:20%">
-                <h3>Nombres</h3>
+                <h3>Cedula</h3>
             </div>
 
 
             <div class="form-bottom" style="text-align:right;">
 
                 <!-- action="Home.php" -->
+
                 <form role="form" method="POST" class="login-form">
                     <div class="form-group">
-                        <label class="sr-only" for="form-username">Nombre</label>
-                        <input type="text" name="NOMBRE" placeholder="NOMBRE" class="form-username form-control" id="NOMBRE">
+                        <label class="sr-only" for="form-username">cedula</label>
+                        <input minlength="9" maxlength="9" type="text" name="cedula" placeholder="Cedula" class="form-username form-control" id="cedula">
                     </div>
                     <div class="form-group">
-                        <label class="sr-only" for="form-username">Apellido Uno</label>
-                        <input type="text" name="ApellidoUno" placeholder="Apellido Uno" class="form-username form-control" id="ApellidoUno">
+                        <label class="sr-only" for="form-username">Codelec</label>
+                        <input minlength="6" maxlength="6" type="text" name="codelec" placeholder="Codelec" class="form-username form-control" id="codelec">
                     </div>
                     <div class="form-group">
-                        <label class="sr-only" for="form-username">Apellido Dos</label>
-                        <input type="text" name="ApellidoDos" placeholder="Apellido Dos" class="form-username form-control" id="ApellidoDos">
+                        <label class="sr-only" for="form-username">FechaVencimiento</label>
+                        <input minlength="8" maxlength="8" type="text" name="FechaVenci" placeholder="Fecha Vencimiento" class="form-username form-control" id="FechaVenci">
                     </div>
 
-                    <button type="submit" class="btn" name="login">Buscar</button>
+                    <div class="form-group">
+                        <label class="sr-only" for="form-username">Nombre</label>
+                        <input type="text" name="nombre" placeholder="Nombre" class="form-username form-control" id="nombre">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="sr-only" for="form-username">PrimerApellido</label>
+                        <input type="text" name="PrimerApellido" placeholder="Primer Apellido" class="form-username form-control" id="PrimerApellido">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="sr-only" for="form-username">SegundoApellido</label>
+                        <input type="text" name="SegundoApellid" placeholder="Segundo Apellido" class="form-username form-control" id="SegundoApellid">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="sr-only" for="form-username">FechaNacimiento</label>
+                        <input type="text" name="FechaNaci" placeholder="Fecha Nacimiento" class="form-username form-control" id="FechaNaci">
+                    </div>
+
+                    <button type="submit" class="btn" name="login">Insertar</button>
                 </form>
             </div>
 
-            </p>
-        </div>
-    </div>
-    </div>
-
-
-    <div>
-
-        <table class="table table-hover table-wrapper " style=" width:65%; height:127px ;Table-layout: fixed; display: block;font-family: Arial, Helvetica, sans-serif; font-size:4ch; margin-top:2%;margin-left: 20%;">
-
-            <thead>
-                <tr>
-                    <th style="width:5.5%; border: 1px solid;text-align: center;">Cédula</th>
-                    <th style="width:0%;border: 1px solid;text-align: center;">Codigo Elec.</th>
-                    <th style="width:4%;;border: 1px solid;text-align: center;">Fecha Ven.</th>
-                    <th style="width:9%;;border: 1px solid; text-align: center;">Nombre</th>
-                    <th style="width:9%;;border: 1px solid;text-align: center;">Primer Apellido</th>
-                    <th style="width:6%;;border: 1px solid;text-align: center;">Segundo Apellido</th>
-                    <th style="width:6%;;border: 1px solid;text-align: center;">Fecha Nacimiento</th>
-                </tr>
-            </thead>
-
-            <tbody style="border: 1px solid;">
-                <tr class="table-secondary" style="border: 1px solid; width:50%; ">
-                    <?php
-
-                    foreach ($res as $col) {
-                        echo "<tr>";
-                        foreach ($col as $item) {
-                            echo "<td  >" . ($item !== null ? htmlentities($item, ENT_QUOTES) : " ") . "  " . "</td>";
-                        }
-                    }
-
-
-                    ?>
-
-                </tr>
-
-            </tbody>
-        </table>
-
-    </div>
-
-    <div class="row" style="font-size:10px;">
-
-        <div class="col-md-5 col-sm-5 col-xs-5">
-
-            <div class="pull-left">
-
-                <p><i class="fa fa-copyright"></i> &nbsp; 2022 Lenguajes</p>
-
-            </div>
 
         </div>
-    </div>
-    </div>
-
     </div>
 
 
 </body>
-</script>
