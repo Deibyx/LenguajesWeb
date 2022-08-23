@@ -134,10 +134,10 @@
                 </form>
             </div>
 
-            
+
         </div>
     </div>
-   
+
 
 
     <?php
@@ -168,14 +168,8 @@
 
             $nrowsB = oci_fetch_all($stidB, $resb, null, null, OCI_FETCHSTATEMENT_BY_ROW + OCI_NUM);
 
-            //echo $nrowsB;
-
-
-
-
             while (($row = oci_fetch_array($stid)) != false) {
             }
-
 
             while (($row = oci_fetch_array($stidB)) != false) {
             }

@@ -88,30 +88,30 @@ if (!isset($_SESSION['login_user'])) {
     </div>
 
     <div id="mySidebar" class="sidebar">
-            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-            <a href="Home.php">Home</a>
-            <a href="Consultas.php">Consultas</a>
-            <a href="NombreMasComunes.php">Nombres Más comunes</a>
-            <a href="NombreMenosComunes.php">Nombres Menos comunes</a>
-            <a href="Electores.php">Cantidad de Electores</a>
-            <a href="ReportesConsolidados.php">Reporte Consolidados</a>
-            <a href="ConsultaNombres.php">Consultas Nombres</a>
-            <a href="CRUD.php">Insertar</a>
-            <a href="borrar.php">Borrar</a>
-            <a href="actualizar.php">Actulizar </a>
-        </div>
+      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+      <a href="Home.php">Home</a>
+      <a href="Consultas.php">Consultas</a>
+      <a href="NombreMasComunes.php">Nombres Más comunes</a>
+      <a href="NombreMenosComunes.php">Nombres Menos comunes</a>
+      <a href="Electores.php">Cantidad de Electores</a>
+      <a href="ReportesConsolidados.php">Reporte Consolidados</a>
+      <a href="ConsultaNombres.php">Consultas Nombres</a>
+      <a href="CRUD.php">Insertar</a>
+      <a href="borrar.php">Borrar</a>
+      <a href="actualizar.php">Actulizar </a>
+    </div>
 
     <div class="collapse navbar-collapse" id="navbarTogglerDemo03" style="position: absolute; right: 10px; width: 4%; padding: 1px; align-items: center;">
       <ul class="navbar-nav mr-auto mt-2 mt-md-0">
 
         <li class="nav-item">
 
-          <a class="nav-link" href="index.php" style="font-size:20px ;font-family: Arial, Helvetica, sans-serif;"> 
-          <?php 
-          
-        //*include 'logout.php';
-          ?>
-          Logout</a>
+          <a class="nav-link" href="index.php" style="font-size:20px ;font-family: Arial, Helvetica, sans-serif;">
+            <?php
+
+            //*include 'logout.php';
+            ?>
+            Logout</a>
 
         </li>
       </ul>
@@ -122,7 +122,6 @@ if (!isset($_SESSION['login_user'])) {
 
         <li class="nav-item">
           <a style="font-size:20px ;font-family: Arial, Helvetica, sans-serif;">Home</a>
-          <a style="font-size:20px ;font-family: Arial, Helvetica, sans-serif;"><? //=$_SESSION['sess_user']; ?></a>
         </li>
       </ul>
     </div>
@@ -130,78 +129,57 @@ if (!isset($_SESSION['login_user'])) {
   </nav>
 
 
-  <div class="outer wrapper " >
+  <div class="outer wrapper ">
 
-  <?php
+    <?php
 
-include 'DBConnection.php';
-session_reset();
+    include 'DBConnection.php';
+    session_reset();
 
-$stid = ociparse($DBConn,'SELECT * FROM padronElectoral WHERE codelec = 301002');
+    $stid = ociparse($DBConn, 'SELECT * FROM padronElectoral WHERE codelec = 301002');
 
-oci_execute($stid);
+    oci_execute($stid);
 
-$nrows = oci_fetch_all($stid, $res, null, null, OCI_FETCHSTATEMENT_BY_ROW + OCI_NUM);
+    $nrows = oci_fetch_all($stid, $res, null, null, OCI_FETCHSTATEMENT_BY_ROW + OCI_NUM);
 
+    ?>
 
-//oci_fetch_all($stid, $res);
-// echo "$nrows rows fetched<br>\n";
-//var_dump($res);
-//var_export($res);
-/*
-echo "<table border='1'>\n";
-foreach ($res as $col) {
-    echo "<tr>\n";
-    foreach ($col as $item) {
-        echo "    <td>".($item !== null ? htmlentities($item, ENT_QUOTES) : "")."</td>\n";
-    }
-    echo "</tr>\n";
-}
-echo "</table>\n";
-*/
+    <div>
 
-//oci_close($conn)
+      <table class="table table-hover table-wrapper " style=" width:65%;height:1000px ;Table-layout: fixed; display: block;font-family: Arial, Helvetica, sans-serif; font-size:4ch; margin-top:2%;margin-left: 20%; border: 1px solid;">
 
-  ?>
+        <thead style=" border: 1px solid; ">
+          <tr>
+            <th style="width:5.5%; border: 1px solid;text-align: center;">Cédula</th>
+            <th style="width:0%;border: 1px solid;text-align: center;">Codigo Elec.</th>
+            <th style="width:4%;;border: 1px solid;text-align: center;">Fecha Ven.</th>
+            <th style="width:9%;;border: 1px solid; text-align: center;">Nombre</th>
+            <th style="width:9%;;border: 1px solid;text-align: center;">Primer Apellido</th>
+            <th style="width:6%;;border: 1px solid;text-align: center;">Segundo Apellido</th>
+            <th style="width:6%;;border: 1px solid;text-align: center;">Fecha Nacimiento</th>
 
-<div >
+          </tr>
+        </thead>
+        <tbody style="border: 1px solid;">
+          <tr class="table-secondary" style="border: 1px solid; width:50%; ">
+            <?php
 
-    <table class="table table-hover table-wrapper "  
-    
-    style=" width:65%;height:1000px ;Table-layout: fixed; display: block;font-family: Arial, Helvetica, sans-serif; font-size:4ch; margin-top:2%;margin-left: 20%; border: 1px solid;">
+            foreach ($res as $col) {
+              echo "<tr>";
+              foreach ($col as $item) {
+                echo "<td  >" . ($item !== null ? htmlentities($item, ENT_QUOTES) : " ") . "  " . "</td>";
+              }
+              echo "</tr>";
+            }
 
-      <thead style=" border: 1px solid; ">
-        <tr>
-          <th style="width:5.5%; border: 1px solid;text-align: center;">Cédula</th>
-          <th style="width:0%;border: 1px solid;text-align: center;">Codigo Elec.</th>
-          <th style="width:4%;;border: 1px solid;text-align: center;">Fecha Ven.</th>
-          <th style="width:9%;;border: 1px solid; text-align: center;">Nombre</th>
-          <th style="width:9%;;border: 1px solid;text-align: center;">Primer Apellido</th>
-          <th style="width:6%;;border: 1px solid;text-align: center;">Segundo Apellido</th>
-          <th style="width:6%;;border: 1px solid;text-align: center;">Fecha Nacimiento</th>
-          
-        </tr>
-      </thead>
-      <tbody style="border: 1px solid;">
-        <tr class="table-secondary" style="border: 1px solid; width:50%; " >
-          <?php 
-         
-               foreach ($res as $col) {
-          echo "<tr>";
-          foreach ($col as $item) {
-            echo "<td  >".($item !== null ? htmlentities($item, ENT_QUOTES) : " "). "  "."</td>"; 
-          }
-          echo "</tr>";
-      }
+            oci_free_statement($stid);
 
-      oci_free_statement($stid);
-      
-       ?>
+            ?>
 
-        </tr>
-        
-      </tbody>
-    </table>
+          </tr>
+
+        </tbody>
+      </table>
 
     </div>
 

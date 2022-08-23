@@ -121,8 +121,6 @@ if (!isset($_SESSION['login_user'])) {
 
                 <li class="nav-item">
                     <a style="font-size:20px ;font-family: Arial, Helvetica, sans-serif;">Home</a>
-                    <a style="font-size:20px ;font-family: Arial, Helvetica, sans-serif;"><? //=$_SESSION['sess_user']; 
-                                                                                            ?></a>
                 </li>
             </ul>
         </div>
@@ -133,7 +131,7 @@ if (!isset($_SESSION['login_user'])) {
     <?php
 
     include 'DBConnection.php';
-    
+
     session_reset();
 
     if (isset($_POST['FechaNaci'])) {
@@ -155,19 +153,18 @@ if (!isset($_SESSION['login_user'])) {
         if (empty($cedula) || empty($codelec) || empty($FechaVenci) || empty($nombre) || empty($PrimerApellido) || empty($SegundoApellid) || empty($FechaNaci)) {
 
             echo ' <script> alert ("Complete los campos. 🤐") </script> ';
-
         } else {
 
             $stid = oci_parse($DBConn, 'begin ACTUALIZAR(:p1, :p2, :p3, :p4, :p5, :p6, :p7 ); end;');
 
-          /*  echo $cedula;
+            /*  echo $cedula;
             echo $codelec;
             echo $FechaVenci;
             echo $nombre;
             echo $PrimerApellido;
             echo $SegundoApellid;
             echo $FechaNaci;
-            */          
+            */
             oci_bind_by_name($stid, ':p1', $cedula);
             oci_bind_by_name($stid, ':p2', $codelec);
             oci_bind_by_name($stid, ':p3', $FechaVenci);
@@ -182,19 +179,6 @@ if (!isset($_SESSION['login_user'])) {
             oci_close($DBConn);
 
             echo ' <script> alert ("Se actualizó el usuario . 🤐") </script> ';
-
-            //      $stid = ociparse($DBConn, 'BEGIN INSERTAR(:v1,:v2,:v3,:v4,:v5,:v6,:v7); END;');
-            //       oci_bind_by_name($stid, ':v1', $cedula);
-            //      oci_bind_by_name($stid, ':v2', $codelec);
-            //      oci_bind_by_name($stid, ':v3', $FechaVenci);
-            //      oci_bind_by_name($stid, ':v4', $nombre);
-            //    oci_bind_by_name($stid, ':v5', $PrimerApellido);
-            //     oci_bind_by_name($stid, ':v6', $SegundoApellid);
-            //     oci_bind_by_name($stid, ':v7', $FechaNaci);
-            //      oci_execute($stid);
-
-            //oci_free_statement($stid);
-
         }
     }
 

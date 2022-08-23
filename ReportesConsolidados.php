@@ -74,18 +74,18 @@
     </div>
 
     <div id="mySidebar" class="sidebar">
-            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-            <a href="Home.php">Home</a>
-            <a href="Consultas.php">Consultas</a>
-            <a href="NombreMasComunes.php">Nombres Más comunes</a>
-            <a href="NombreMenosComunes.php">Nombres Menos comunes</a>
-            <a href="Electores.php">Cantidad de Electores</a>
-            <a href="ReportesConsolidados.php">Reporte Consolidados</a>
-            <a href="ConsultaNombres.php">Consultas Nombres</a>
-            <a href="CRUD.php">Insertar</a>
-            <a href="borrar.php">Borrar</a>
-            <a href="actualizar.php">Actulizar </a>
-        </div>
+      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+      <a href="Home.php">Home</a>
+      <a href="Consultas.php">Consultas</a>
+      <a href="NombreMasComunes.php">Nombres Más comunes</a>
+      <a href="NombreMenosComunes.php">Nombres Menos comunes</a>
+      <a href="Electores.php">Cantidad de Electores</a>
+      <a href="ReportesConsolidados.php">Reporte Consolidados</a>
+      <a href="ConsultaNombres.php">Consultas Nombres</a>
+      <a href="CRUD.php">Insertar</a>
+      <a href="borrar.php">Borrar</a>
+      <a href="actualizar.php">Actulizar </a>
+    </div>
 
     <div class="collapse navbar-collapse" id="navbarTogglerDemo03" style="position: absolute; right: 10px; width: 4%; padding: 1px; align-items: center;">
       <ul class="navbar-nav mr-auto mt-2 mt-md-0">
@@ -228,42 +228,3 @@
   </div>
 
 </body>
-
-<!-- App JS 
-  <script src="js/app.js"></script>
-
-  Estructura basica de Jquery
-   App JS 
-
-  <script type="text/javascript">
-    $(document).ready(function() {
-      //Llamando la tabla
-      $('#tabla').load('componentes/tabla.php');
-    });
-  </script>
-
-  <script type="text/javascript">
-    $(document).ready(function() {
-
-      $('#guardarNuevo').click(function() {
-
-        nombre = $('#nombre').val();
-        apellido = $('#apellido').val();
-        email = $('#email').val();
-        telefono = $('#telefono').val();
-
-        agregardatos(nombre, apellido, email, telefono)
-      });
-
-
-      $('#actualizarDatos').click(function() {
-
-        actualizaDatos();
-
-      });
-    });
-
-
-
-
-  </script>-->

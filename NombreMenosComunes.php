@@ -47,7 +47,7 @@
   <link rel="stylesheet" href="bd\css\bootstrap-prefers-dark-color-only.css">
   <link rel="stylesheet" href="bd\css\bootstrap-prefers-dark.css">
   <link rel="stylesheet" href="bd\css\bootstrap-prefers-dark.min.css">
-  
+
   <link rel="stylesheet" href="bd\css\form-elements.css">
   <link rel="stylesheet" href="bd\css\style.cc">
   <link rel="stylesheet" href="bd\css\toggle-bootstrap-dark.css">
@@ -74,35 +74,35 @@
     </div>
 
     <div id="mySidebar" class="sidebar">
-            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-            <a href="Home.php">Home</a>
-            <a href="Consultas.php">Consultas</a>
-            <a href="NombreMasComunes.php">Nombres Más comunes</a>
-            <a href="NombreMenosComunes.php">Nombres Menos comunes</a>
-            <a href="Electores.php">Cantidad de Electores</a>
-            <a href="ReportesConsolidados.php">Reporte Consolidados</a>
-            <a href="ConsultaNombres.php">Consultas Nombres</a>
-            <a href="CRUD.php">Insertar</a>
-            <a href="borrar.php">Borrar</a>
-            <a href="actualizar.php">Actulizar </a>
-        </div>
+      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+      <a href="Home.php">Home</a>
+      <a href="Consultas.php">Consultas</a>
+      <a href="NombreMasComunes.php">Nombres Más comunes</a>
+      <a href="NombreMenosComunes.php">Nombres Menos comunes</a>
+      <a href="Electores.php">Cantidad de Electores</a>
+      <a href="ReportesConsolidados.php">Reporte Consolidados</a>
+      <a href="ConsultaNombres.php">Consultas Nombres</a>
+      <a href="CRUD.php">Insertar</a>
+      <a href="borrar.php">Borrar</a>
+      <a href="actualizar.php">Actulizar </a>
+    </div>
 
     <div class="collapse navbar-collapse" id="navbarTogglerDemo03" style="position: absolute; right: 10px; width: 4%; padding: 1px; align-items: center;">
       <ul class="navbar-nav mr-auto mt-2 mt-md-0">
-   
+
         <li class="nav-item">
           <a class="nav-link" href="index.php" style="font-size:20px ;font-family: Arial, Helvetica, sans-serif;">Logout</a>
-          
+
         </li>
       </ul>
     </div>
 
-    <div class="collapse navbar-collapse" id="navbarTogglerDemo03" >
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
       <ul class="navbar-nav mr-auto mt-2 mt-md-0">
-   
+
         <li class="nav-item">
           <a style="font-size:20px ;font-family: Arial, Helvetica, sans-serif;">Nombres Menos Comunes</a>
-          
+
         </li>
       </ul>
     </div>
@@ -112,129 +112,69 @@
 
   <?php
 
-include 'DBConnection.php';
-session_reset();
+  include 'DBConnection.php';
+  session_reset();
 
-$stid = ociparse($DBConn,'SELECT * FROM menoscomunes ');
+  $stid = ociparse($DBConn, 'SELECT * FROM menoscomunes ');
 
-oci_execute($stid);
+  oci_execute($stid);
 
-$nrows = oci_fetch_all($stid, $res, null, null, OCI_FETCHSTATEMENT_BY_ROW + OCI_NUM);
-
-
-//oci_fetch_all($stid, $res);
-// echo "$nrows rows fetched<br>\n";
-//var_dump($res);
-//var_export($res);
-/*
-echo "<table border='1'>\n";
-foreach ($res as $col) {
-    echo "<tr>\n";
-    foreach ($col as $item) {
-        echo "    <td>".($item !== null ? htmlentities($item, ENT_QUOTES) : "")."</td>\n";
-    }
-    echo "</tr>\n";
-}
-echo "</table>\n";
-*/
-
-//oci_close($conn)
+  $nrows = oci_fetch_all($stid, $res, null, null, OCI_FETCHSTATEMENT_BY_ROW + OCI_NUM);
 
   ?>
 
 
-  
-<div >
 
-<table class="table table-hover table-wrapper "  
+  <div>
 
-style=" width:65%;height:290px ;Table-layout: fixed; display: block;font-family: Arial, Helvetica, sans-serif; font-size:4ch; margin-top:2%;margin-left: 20%; border: 1px solid;">
+    <table class="table table-hover table-wrapper " style=" width:65%;height:290px ;Table-layout: fixed; display: block;font-family: Arial, Helvetica, sans-serif; font-size:4ch; margin-top:2%;margin-left: 20%; border: 1px solid;">
 
-  <thead style=" border: 1px solid; ">
-    <tr>
-      
-      <th style="width:9%;;border: 1px solid; text-align: center;">Nombre</th>
-      
-    </tr>
-  </thead>
-  <tbody style="border: 1px solid;">
-    <tr class="table-secondary" style="border: 1px solid; width:50%; " >
-      <?php 
-     
-           foreach ($res as $col) {
-      echo "<tr>";
-      foreach ($col as $item) {
-        echo "<td  >".($item !== null ? htmlentities($item, ENT_QUOTES) : " "). "  "."</td>"; 
-      }
-      echo "</tr>";
-  }
+      <thead style=" border: 1px solid; ">
+        <tr>
 
-  oci_free_statement($stid);
-  
-   ?>
+          <th style="width:9%;;border: 1px solid; text-align: center;">Nombre</th>
 
-    </tr>
-    
-  </tbody>
-</table>
+        </tr>
+      </thead>
+      <tbody style="border: 1px solid;">
+        <tr class="table-secondary" style="border: 1px solid; width:50%; ">
+          <?php
 
-</div>
+          foreach ($res as $col) {
+            echo "<tr>";
+            foreach ($col as $item) {
+              echo "<td  >" . ($item !== null ? htmlentities($item, ENT_QUOTES) : " ") . "  " . "</td>";
+            }
+            echo "</tr>";
+          }
+
+          oci_free_statement($stid);
+
+          ?>
+
+        </tr>
+
+      </tbody>
+    </table>
+
+  </div>
 
 
-      <div class="row" style="font-size:10px;">
+  <div class="row" style="font-size:10px;">
 
-        <div class="col-md-5 col-sm-5 col-xs-5">
+    <div class="col-md-5 col-sm-5 col-xs-5">
 
-          <div class="pull-left">
+      <div class="pull-left">
 
-            <p><i class="fa fa-copyright"></i> &nbsp; 2022 Lenguajes</p>
+        <p><i class="fa fa-copyright"></i> &nbsp; 2022 Lenguajes</p>
 
-          </div>
-
-        </div>
       </div>
+
     </div>
+  </div>
+  </div>
 
   </div>
 
 
 </body>
-
-  <!-- App JS 
-  <script src="js/app.js"></script>
-
-  Estructura basica de Jquery
-   App JS 
-
-  <script type="text/javascript">
-    $(document).ready(function() {
-      //Llamando la tabla
-      $('#tabla').load('componentes/tabla.php');
-    });
-  </script>
-
-  <script type="text/javascript">
-    $(document).ready(function() {
-
-      $('#guardarNuevo').click(function() {
-
-        nombre = $('#nombre').val();
-        apellido = $('#apellido').val();
-        email = $('#email').val();
-        telefono = $('#telefono').val();
-
-        agregardatos(nombre, apellido, email, telefono)
-      });
-
-
-      $('#actualizarDatos').click(function() {
-
-        actualizaDatos();
-
-      });
-    });
-
-
-
-
-  </script>-->

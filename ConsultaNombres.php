@@ -130,19 +130,10 @@
         if (empty($apellidoUno) && empty($apellidoDos)) {
 
             $stid = oci_parse($DBConn, 'SELECT * FROM padronElectoral where nombre = :p1 ');
-
             oci_bind_by_name($stid, ':p1', $Nombre);
-
-            //  
-
             oci_execute($stid);
             oci_commit($DBConn);
-
-            //oci_close($DBConn);
-
             $nrows = oci_fetch_all($stid, $res, null, null, OCI_FETCHSTATEMENT_BY_ROW + OCI_NUM);
-
-            //echo $nrows;
 
             while (($row = oci_fetch_array($stid)) != false) {
             }
@@ -175,12 +166,6 @@
             oci_execute($stid);
             oci_commit($DBConn);
             $nrows = oci_fetch_all($stid, $res, null, null, OCI_FETCHSTATEMENT_BY_ROW + OCI_NUM);
-
-
-            //           while (($row = oci_fetch_array($stid)) != false) {   }
-
-
-
         }
     }
 

@@ -121,25 +121,6 @@ oci_execute($stid);
 
 $nrows = oci_fetch_all($stid, $res, null, null, OCI_FETCHSTATEMENT_BY_ROW + OCI_NUM);
 
-
-//oci_fetch_all($stid, $res);
-// echo "$nrows rows fetched<br>\n";
-//var_dump($res);
-//var_export($res);
-/*
-echo "<table border='1'>\n";
-foreach ($res as $col) {
-    echo "<tr>\n";
-    foreach ($col as $item) {
-        echo "    <td>".($item !== null ? htmlentities($item, ENT_QUOTES) : "")."</td>\n";
-    }
-    echo "</tr>\n";
-}
-echo "</table>\n";
-*/
-
-//oci_close($conn)
-
   ?>
 
 
@@ -201,42 +182,3 @@ style=" width:65%;height:290px ;Table-layout: fixed; display: block;font-family:
 
 
 </body>
-
-  <!-- App JS 
-  <script src="js/app.js"></script>
-
-  Estructura basica de Jquery
-   App JS 
-
-  <script type="text/javascript">
-    $(document).ready(function() {
-      //Llamando la tabla
-      $('#tabla').load('componentes/tabla.php');
-    });
-  </script>
-
-  <script type="text/javascript">
-    $(document).ready(function() {
-
-      $('#guardarNuevo').click(function() {
-
-        nombre = $('#nombre').val();
-        apellido = $('#apellido').val();
-        email = $('#email').val();
-        telefono = $('#telefono').val();
-
-        agregardatos(nombre, apellido, email, telefono)
-      });
-
-
-      $('#actualizarDatos').click(function() {
-
-        actualizaDatos();
-
-      });
-    });
-
-
-
-
-  </script>-->
