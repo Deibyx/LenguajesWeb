@@ -57,8 +57,7 @@
     <link rel="stylesheet" href="bd\css\toggle-bootstrap.css">
     <link rel="stylesheet" href="bd\css\toggle-bootstrap.min.css">
 
-    <!--<script src=" librerias/bootstrap/js/bootstrap.js">
-  </script>-->
+    <link rel="stylesheet" href="dist\css\tablewrap.css">
 
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <script src="librerias/alertifyjs/alertify.js"></script>
@@ -129,90 +128,62 @@
         $apellidoDos = $_POST['ApellidoDos'];
 
 
-        // echo   $Nombre;
+        if (empty($apellidoUno) && empty($apellidoDos)) {
 
-        if (empty($apellidoUno)) {
-
-            $stid = oci_parse($DBConn, 'begin SELECCIONAR(:p1, :p2, :p3); end;');
+            $stid = oci_parse($DBConn, 'SELECT * FROM padronElectoral where nombre = :p1 ');
 
             oci_bind_by_name($stid, ':p1', $Nombre);
-            oci_bind_by_name($stid, ':p1', $apellidoUno);
-            oci_bind_by_name($stid, ':p1', $apellidoDos);
+
+            //  
 
             oci_execute($stid);
             oci_commit($DBConn);
 
-            oci_close($DBConn);
+            //oci_close($DBConn);
 
             $nrows = oci_fetch_all($stid, $res, null, null, OCI_FETCHSTATEMENT_BY_ROW + OCI_NUM);
 
-            echo $nrows;
+            //echo $nrows;
 
             while (($row = oci_fetch_array($stid)) != false) {
             }
+        } elseif (empty($Nombre) && empty($apellidoDos)) {
+
+            $stid = oci_parse($DBConn, 'SELECT * FROM padronElectoral where apellidoUno = :p2 ');
+            oci_bind_by_name($stid, ':p2', $apellidoUno);
+            oci_execute($stid);
+            oci_commit($DBConn);
+            $nrows = oci_fetch_all($stid, $res, null, null, OCI_FETCHSTATEMENT_BY_ROW + OCI_NUM);
+
+            while (($row = oci_fetch_array($stid)) != false) {
+            }
+        } elseif (!empty($Nombre) && !empty($apellidoUno) && !empty($apellidoDos)) {
+
+            $stid = oci_parse($DBConn, 'SELECT * FROM padronElectoral where nombre = :p1 AND apellidoUno = :p2 AND apellidoDos = :p3 ');
+            oci_bind_by_name($stid, ':p1', $Nombre);
+            oci_bind_by_name($stid, ':p2', $apellidoUno);
+            oci_bind_by_name($stid, ':p3', $apellidoDos);
+            oci_execute($stid);
+            oci_commit($DBConn);
+            $nrows = oci_fetch_all($stid, $res, null, null, OCI_FETCHSTATEMENT_BY_ROW + OCI_NUM);
+
+            while (($row = oci_fetch_array($stid)) != false) {
+            }
+        } else {
+
+            $stid = oci_parse($DBConn, 'SELECT * FROM padronElectoral where apellidoDos = :p3 ');
+            oci_bind_by_name($stid, ':p3', $apellidoDos);
+            oci_execute($stid);
+            oci_commit($DBConn);
+            $nrows = oci_fetch_all($stid, $res, null, null, OCI_FETCHSTATEMENT_BY_ROW + OCI_NUM);
+
+
+            //           while (($row = oci_fetch_array($stid)) != false) {   }
+
+
+
         }
     }
-
-    /*
-    
-    
-    
-    
-    
-    elseif (empty($nombre) || empty($apellidoDos)) {
-
-            $stid = ociparse($DBConn, 'SELECT * FROM padronElectoral Where ApellidoUno =' . $apellidoUno);
-            oci_execute($stid);
-            $nrows = oci_fetch_all($stid, $res, null, null, OCI_FETCHSTATEMENT_BY_ROW + OCI_NUM);
-            while (($row = oci_fetch_array($stid)) != false) {
-            }
-
-        } else {
-
-
-            $stid = ociparse($DBConn, 'SELECT * FROM padronElectoral Where ApellidoDos =' . $apellidoDos);
-            oci_execute($stid);
-            $nrows = oci_fetch_all($stid, $res, null, null, OCI_FETCHSTATEMENT_BY_ROW + OCI_NUM);
-            while (($row = oci_fetch_array($stid)) != false) {
-            }
-
-        }
-    
-    if (empty($nombre)) {
-
-            echo ' <script> alert ("Complete los campos. 🤐") </script> ';
-        } else {
-
-            $stid = ociparse($DBConn, 'SELECT * FROM padronElectoral Where Cedula =' . $cedula);
-
-            $stidB = ociparse($DBConn, 'SELECT floor(months_between(SYSDATE, FECHANAC) /12) as edad FROM PadronElectoral where Cedula =' . $cedula);
-
-            oci_execute($stid);
-            
-            oci_execute($stidB);
-
-            $nrows = oci_fetch_all($stid, $res, null, null, OCI_FETCHSTATEMENT_BY_ROW + OCI_NUM);
-
-            $nrowsB = oci_fetch_all($stidB, $resb, null, null, OCI_FETCHSTATEMENT_BY_ROW + OCI_NUM);
-
-            //echo $nrowsB;
-
-
- 
-            
-            while (($row = oci_fetch_array($stid)) != false) {
-            }
-
-
-            while(($row = oci_fetch_array($stidB)) != false){
-
-              
-
-            }
-
-        }
-
-    */
 
     ?>
 
@@ -256,9 +227,9 @@
 
     <div>
 
-        <table class="table table-hover table-wrapper " style=" width:65%; height:127px ;Table-layout: fixed; display: block;font-family: Arial, Helvetica, sans-serif; font-size:4ch; margin-top:2%;margin-left: 20%;">
+        <table class="table table-hover table-wrapper " style=" width:65%;height:1000px ;Table-layout: fixed; display: block;font-family: Arial, Helvetica, sans-serif; font-size:4ch; margin-top:2%;margin-left: 20%; border: 1px solid;">
 
-            <thead>
+            <thead style=" border: 1px solid; ">
                 <tr>
                     <th style="width:5.5%; border: 1px solid;text-align: center;">Cédula</th>
                     <th style="width:0%;border: 1px solid;text-align: center;">Codigo Elec.</th>
@@ -267,9 +238,9 @@
                     <th style="width:9%;;border: 1px solid;text-align: center;">Primer Apellido</th>
                     <th style="width:6%;;border: 1px solid;text-align: center;">Segundo Apellido</th>
                     <th style="width:6%;;border: 1px solid;text-align: center;">Fecha Nacimiento</th>
+
                 </tr>
             </thead>
-
             <tbody style="border: 1px solid;">
                 <tr class="table-secondary" style="border: 1px solid; width:50%; ">
                     <?php
@@ -279,6 +250,7 @@
                         foreach ($col as $item) {
                             echo "<td  >" . ($item !== null ? htmlentities($item, ENT_QUOTES) : " ") . "  " . "</td>";
                         }
+                        echo "</tr>";
                     }
 
                     oci_free_statement($stid);
