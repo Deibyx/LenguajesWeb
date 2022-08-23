@@ -82,48 +82,17 @@
 			$stid = ociparse($DBConn, 'SELECT * FROM administradores ');
 			oci_execute($stid);
 
-			//$nrows = oci_fetch_all($stid, $resultado, 0 ,+1 , OCI_FETCHSTATEMENT_BY_COLUMN + OCI_NUM);
-
-
 			while (($row = oci_fetch_array($stid)) != false) {
-				// Use the uppercase column names for the associative array indices
-				// echo $row[1] . " es el usuario ". "<br>\n";
-				// echo $row[2] . " es el password ". "<br>\n";
-
-				//$Compare1 = $row[1];
-				//$Compare2 = $row[2];
-
-
-				// echo "$username". " es el usuario ingresado ". "<br>\n";
-
-				//echo "$password". " es la contra  ingresado ". "<br>\n";
 
 				if ($row[1] == $username && $row[2] == $password) {
 
-					//session_destroy();
+
 					header("Location: http://localhost/LenguajesWeb/Home.php ");
-
-					//echo "Si es la clave";
-
-					//exit;
-
 				} else {
 				}
 			}
 
-
 			echo ' <script> alert ("La contraseña es incorrecta 🤐") </script> ';
-			//echo "$nrows rows fetched<br>\n";
-			// var_dump($res);
-			//var_export($resultado);
-
-
-			//filter_var_array($nrows);
-
-			//			echo "$nrows";
-			//		echo"$username";
-			//		echo"$password";
-
 		}
 	}
 
@@ -132,7 +101,6 @@
 
 
 	<div class="container" style="margin:auto; width: 2000px; height: 1200px;display: flex; flex-wrap: wrap; align-content: center; padding: 324px; ;">
-		<!-- border: 1px solid #c3c3c3; -->
 
 		<div class="card text-white bg-secondary mb-2 d-inline-block" style=" max-width: 2000px; padding-left:20%; padding-right:20%;  ">
 			<div class="card-header" style="padding-left:20%; padding-right:20%">
@@ -141,11 +109,8 @@
 			<div class="card-body">
 				<h4 class="card-title">Enter username and password to log on:</h4>
 				<p class="card-text">
-
 				<div class="form-bottom" style="text-align:right;">
 
-
-					<!-- action="Home.php" -->
 					<form role="form" method="POST" class="login-form">
 						<div class="form-group">
 							<label class="sr-only" for="form-username">Username</label>
@@ -158,7 +123,6 @@
 						<button type="submit" class="btn" name="login">Sign in!</button>
 					</form>
 				</div>
-
 				</p>
 			</div>
 		</div>

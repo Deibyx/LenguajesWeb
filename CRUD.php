@@ -95,12 +95,12 @@ if (!isset($_SESSION['login_user'])) {
             <a href="NombreMenosComunes.php">Nombres Menos comunes</a>
             <a href="Electores.php">Cantidad de Electores</a>
             <a href="ReportesConsolidados.php">Reporte Consolidados</a>
-            <a href="Bitacora.php">Bitácora de Consultas</a>
             <a href="ConsultaNombres.php">Consultas Nombres</a>
             <a href="CRUD.php">Insertar</a>
             <a href="borrar.php">Borrar</a>
             <a href="actualizar.php">Actulizar </a>
         </div>
+        
         <div class="collapse navbar-collapse" id="navbarTogglerDemo03" style="position: absolute; right: 10px; width: 4%; padding: 1px; align-items: center;">
             <ul class="navbar-nav mr-auto mt-2 mt-md-0">
 

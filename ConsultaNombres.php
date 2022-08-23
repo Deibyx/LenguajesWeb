@@ -80,7 +80,6 @@
             <a href="NombreMenosComunes.php">Nombres Menos comunes</a>
             <a href="Electores.php">Cantidad de Electores</a>
             <a href="ReportesConsolidados.php">Reporte Consolidados</a>
-            <a href="Bitacora.php">Bitácora de Consultas</a>
             <a href="ConsultaNombres.php">Consultas Nombres</a>
             <a href="CRUD.php">Insertar</a>
             <a href="borrar.php">Borrar</a>
