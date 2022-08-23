@@ -204,48 +204,6 @@
   </div>
 
 
-
-
-
-  <div class="container-fluid mt-5" style="font-family: Arial, Helvetica, sans-serif; font-size:5ch; width: 40%; margin-left: 1020px;">
-
-    <div class="card mx-2" style="margin-top:15%;width: 1000px; position: fixed;  ">
-      <div class="row mb-2 ">
-
-        <div class="col-md-2 col-sm-2 col-xs-2" style="padding-left: 80%;">
-          <div class="footer-text pull-right">
-
-            <div class="mt-1">
-              <nav aria-label="...">
-                <ul class="pagination">
-                  <li class="page-item disabled">
-                    <span class="page-link">Previous</span>
-                  </li>
-                  <li class="page-item">
-                    <a class="page-link" href="#!">1</a>
-                  </li>
-                  <li class="page-item active">
-                    <span class="page-link">
-                      2
-                      <span class="sr-only">(current)</span>
-                    </span>
-                  </li>
-                  <li class="page-item">
-                    <a class="page-link" href="#!">3</a>
-                  </li>
-                  <li class="page-item">
-                    <a class="page-link" href="#!">Next</a>
-                  </li>
-                </ul>
-              </nav>
-            </div>
-
-          </div>
-        </div>
-
-      </div>
-
-
       <div class="row" style="font-size:10px;">
 
         <div class="col-md-5 col-sm-5 col-xs-5">
@@ -264,42 +222,3 @@
 
 
 </body>
-
-  <!-- App JS 
-  <script src="js/app.js"></script>
-
-  Estructura basica de Jquery
-   App JS 
-
-  <script type="text/javascript">
-    $(document).ready(function() {
-      //Llamando la tabla
-      $('#tabla').load('componentes/tabla.php');
-    });
-  </script>
-
-  <script type="text/javascript">
-    $(document).ready(function() {
-
-      $('#guardarNuevo').click(function() {
-
-        nombre = $('#nombre').val();
-        apellido = $('#apellido').val();
-        email = $('#email').val();
-        telefono = $('#telefono').val();
-
-        agregardatos(nombre, apellido, email, telefono)
-      });
-
-
-      $('#actualizarDatos').click(function() {
-
-        actualizaDatos();
-
-      });
-    });
-
-
-
-
-  </script>-->

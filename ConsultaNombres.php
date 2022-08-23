@@ -122,7 +122,7 @@
     session_reset();
 
 
-    if (isset($_POST['NOMBRE'])) {
+    if (isset($_POST['ApellidoDos'])) {
 
         $Nombre =  $_POST['NOMBRE'];
         $apellidoUno = $_POST['ApellidoUno'];
@@ -133,10 +133,16 @@
 
         if (empty($apellidoUno)) {
 
-            $stid = ociparse($DBConn, 'SELECT * FROM padronElectoral WHERE APELLIDOUNO = ' . "'" . $Nombre . "'");
+            $stid = oci_parse($DBConn, 'begin SELECCIONAR(:p1, :p2, :p3); end;');
 
+            oci_bind_by_name($stid, ':p1', $Nombre);
+            oci_bind_by_name($stid, ':p1', $apellidoUno);
+            oci_bind_by_name($stid, ':p1', $apellidoDos);
 
             oci_execute($stid);
+            oci_commit($DBConn);
+
+            oci_close($DBConn);
 
             $nrows = oci_fetch_all($stid, $res, null, null, OCI_FETCHSTATEMENT_BY_ROW + OCI_NUM);
 
@@ -275,6 +281,7 @@
                         }
                     }
 
+                    oci_free_statement($stid);
 
                     ?>
 
