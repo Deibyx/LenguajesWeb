@@ -189,7 +189,7 @@
 
 
 
-    <div style="margin-left:20%; width: 20%; height: 50%; margin-top:100px;">
+    <div style="margin-left:20%; width: 20%; height: 40%; margin-top:100px;">
         <!-- border: 1px solid #c3c3c3; -->
 
         <div class="card text-white bg-secondary mb-2 d-inline-block" style=" max-width: 2000px; padding-left:20%; padding-right:20%;  ">
