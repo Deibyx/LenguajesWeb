@@ -97,7 +97,9 @@ if (!isset($_SESSION['login_user'])) {
             <a href="ReportesConsolidados.php">Reporte Consolidados</a>
             <a href="Bitacora.php">Bitácora de Consultas</a>
             <a href="ConsultaNombres.php">Consultas Nombres</a>
-            <a href="CRUD.php">CRUD</a>
+            <a href="CRUD.php">Insertar</a>
+            <a href="borrar.php">Borrar</a>
+            <a href="actualizar.php">Actulizar </a>
         </div>
         <div class="collapse navbar-collapse" id="navbarTogglerDemo03" style="position: absolute; right: 10px; width: 4%; padding: 1px; align-items: center;">
             <ul class="navbar-nav mr-auto mt-2 mt-md-0">
@@ -176,12 +178,12 @@ if (!isset($_SESSION['login_user'])) {
             oci_bind_by_name($stid, ':p7', $FechaNaci);
 
             oci_execute($stid);
+            oci_commit($DBConn);
+            oci_free_statement($stid);
+            oci_close($DBConn);
 
-           // oci_free_statement($stid);
-            //oci_close($conexión);
 
             //      $stid = ociparse($DBConn, 'BEGIN INSERTAR(:v1,:v2,:v3,:v4,:v5,:v6,:v7); END;');
-
             //       oci_bind_by_name($stid, ':v1', $cedula);
             //      oci_bind_by_name($stid, ':v2', $codelec);
             //      oci_bind_by_name($stid, ':v3', $FechaVenci);

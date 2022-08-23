@@ -83,7 +83,9 @@
             <a href="ReportesConsolidados.php">Reporte Consolidados</a>
             <a href="Bitacora.php">Bitácora de Consultas</a>
             <a href="ConsultaNombres.php">Consultas Nombres</a>
-            <a href="CRUD.php">CRUD</a>
+            <a href="CRUD.php">Insertar</a>
+            <a href="borrar.php">Borrar</a>
+            <a href="actualizar.php">Actulizar </a>
         </div>
 
         <div class="collapse navbar-collapse" id="navbarTogglerDemo03" style="
